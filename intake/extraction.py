@@ -1,7 +1,7 @@
 """Decode source exports and validate completed provider extractions.
 
-This service returns validated facts and source identity. Review routing and
-durable attempts are later build steps. A schema-valid extraction is not proof
+This service returns validated facts and source identity. Review routing is
+provided by intake.review. A schema-valid extraction is not proof
 of factual accuracy; quote checks establish literal source membership only.
 """
 from dataclasses import dataclass
@@ -141,7 +141,11 @@ def validate_response(response: ProviderResponse, *, message: str) -> dict[str, 
 
 def extract_file(path: Path, *, provider: Provider) -> ExtractionRecord:
     """Extract one source snapshot, returning facts only after validation."""
-    source = read_export(path)
+    return extract_source(read_export(path), provider=provider)
+
+
+def extract_source(source: SourceExport, *, provider: Provider) -> ExtractionRecord:
+    """Extract an already-read snapshot so routing uses those same bytes."""
     try:
         response = provider.complete(message=source.message)
     except ProviderError as exc:
