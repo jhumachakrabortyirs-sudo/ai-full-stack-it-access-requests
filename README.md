@@ -1,10 +1,11 @@
 # IT access-request intake
 
 Python 3.11+ application being built in the order in `planning/plan.md`.
-Steps 1–7 provide an operator CLI, scripted and HTTP providers, extraction
+Steps 1–8 provide an operator CLI, scripted and HTTP providers, extraction
 validation, ordered human-review routing, durable SQLite state, bounded workers,
-recovery and consistent file exports. Accuracy reporting and the remaining
-handover documents are step 8 work. Supported operation is Python 3.11+ on
+recovery, consistent file exports and an independent accuracy comparison.
+Handover procedures and observations are in `deliverables/verification.md`.
+Supported operation is Python 3.11+ on
 Linux with a shared local filesystem; exports use POSIX locks and symlinks.
 
 Setup requires Python 3.11+ with the `venv` module and system pip 22.3+.
@@ -111,6 +112,37 @@ and attempt links. This is a mock application observation, not measured live
 extraction accuracy. SQLite databases and publication lock files are ignored
 by Git; the current generation, its manifest and relative references are the
 reviewable output artifacts.
+
+Compare the 20 messages plus the authored paraphrase against the source-derived
+oracle linked from the accuracy document, using a separate benchmark database:
+
+```bash
+env -u API_KEY python3 -m intake --db state/accuracy.sqlite3 accuracy --expected deliverables/accuracy.md --provider mock --output deliverables/accuracy-report.json --operator accuracy-mock
+```
+
+The report gives exact scalar counts with a fixed 252-field denominator,
+per-field/per-document errors, and separate schema, quote, issue and routing
+checks. Missing results remain in the denominator; missing keys never match
+expected null. Source hashes bind expectations and measured records to the
+same inputs. `--records PATH` compares existing JSONL without calling a
+provider. A 20-document file leaves the paraphrase's 12 fields unmatched.
+
+`deliverables/accuracy.md` contains all expected scalar facts and literal source
+evidence for the 21 documents. `deliverables/accuracy-report.json` records the
+observed mock agreement and configuration; it is not live model accuracy.
+`deliverables/verification.md` provides exact mock commands, intended assertions,
+observed results/repairs, workload/recovery assumptions and external submission
+limits. Regenerate the handover documents from the independent oracle and
+actual mock records with:
+
+```bash
+env -u API_KEY python3 -m tools.handover
+```
+
+This tool preserves the source-authored expectations, writes the measured report
+separately, and regenerates credential-redacted request evidence without a live
+provider call. Spec-line validation marks remain the human review required by
+`docs/03-implement-and-validate.md`.
 
 `intake.providers.ScriptedProvider` consumes saved reply/error fixtures with
 optional event barriers for deterministic delays. `intake.extraction.read_export`

@@ -27,7 +27,7 @@ def _parser() -> argparse.ArgumentParser:
     common = argparse.ArgumentParser(add_help=False)
     # Suppressed defaults preserve --db supplied before the subcommand while
     # also accepting replayable retry options after it.
-    common.add_argument("--db", type=Path, default=argparse.SUPPRESS, help="Shared local SQLite database (default: state/intake.sqlite3)")
+    common.add_argument("--db", type=Path, default=argparse.SUPPRESS, help="SQLite database (default: state/accuracy.sqlite3 for accuracy; state/intake.sqlite3 otherwise)")
     parser = argparse.ArgumentParser(prog="python3 -m intake", parents=[common], description=__doc__)
     commands = parser.add_subparsers(dest="command", required=True)
     mutation = {}
@@ -35,6 +35,7 @@ def _parser() -> argparse.ArgumentParser:
         ("run", "Accept JSON exports and prepare human review records"),
         ("resume", "Resume queued/expired work from saved inputs"),
         ("retry", "Force a targeted retry using a saved source"),
+        ("accuracy", "Compare records with a source-authored accuracy document"),
     ):
         command = commands.add_parser(name, parents=[common], help=help_text)
         command.add_argument("--provider", choices=("mock", "http"), default=None)
@@ -50,6 +51,10 @@ def _parser() -> argparse.ArgumentParser:
     mutation["run"].add_argument("--force", action="store_true", help="Bypass unchanged-success reuse")
     mutation["resume"].add_argument("--retry-errors", action="store_true")
     mutation["retry"].add_argument("--document", required=True)
+    mutation["accuracy"].add_argument("--expected", type=Path, default=ROOT / "deliverables/accuracy.md")
+    mutation["accuracy"].add_argument("--output", type=Path, default=None, help="Also save the JSON comparison report")
+    mutation["accuracy"].add_argument("--records", type=Path, default=None, help="Compare existing JSONL instead of running intake")
+    mutation["accuracy"].add_argument("--policy", type=Path, default=ROOT / "materials/office-policy.md")
     for name, help_text in (("queue", "Inspect current completed records"), ("pending", "Inspect unfinished sources and service states")):
         commands.add_parser(name, parents=[common], help=help_text)
     history = commands.add_parser("history", parents=[common], help="Inspect completed attempt history or lifecycle events")
@@ -122,8 +127,43 @@ def main(
     clock: Callable[[], float] = time.time,
 ) -> int:
     args = _parser().parse_args(argv)
-    database = getattr(args, "db", DEFAULT_DB).resolve()
+    database = getattr(args, "db", Path("state/accuracy.sqlite3") if args.command == "accuracy" else DEFAULT_DB).resolve()
     try:
+        if args.command == "accuracy":
+            from .accuracy import compare, load_oracle, oracle_path, validate_oracle
+            oracle = load_oracle(args.expected)
+            validate_oracle(oracle, root=ROOT)
+            if args.output is not None:
+                protected = {args.expected.resolve(), oracle_path(args.expected), ROOT / "snapshot.schema.json"}
+                protected.update((ROOT / item["source_file"]).resolve() for item in oracle["documents"].values())
+                if args.output.resolve() in protected:
+                    raise ValueError("Comparison output must not overwrite expected facts, schema or source inputs")
+            if args.records is not None:
+                records = [json.loads(line) for line in args.records.read_text(encoding="utf-8").splitlines() if line.strip()]
+            else:
+                kind = args.provider or "mock"
+                provider = provider_factory() if provider_factory is not None else _provider(args, kind)
+                if provider.provider_kind != kind:
+                    raise ValueError("Runtime provider does not match the selected provider kind")
+                config = ProcessingConfig.capture(provider=provider, policy_path=args.policy)
+                factory = provider_factory or (lambda: provider)
+                stop = threading.Event()
+                with _interrupts(stop) as interrupted:
+                    records = workers.run_intake(
+                        database, [ROOT / expected["source_file"] for expected in oracle["documents"].values()],
+                        provider_factory=factory, config=config, operator=args.operator, max_workers=args.workers,
+                        lease_seconds=args.lease_seconds, heartbeat_interval=args.heartbeat_interval,
+                        clock=clock, stop_event=stop,
+                    )
+                if interrupted:
+                    _emit({"interrupted": True, "records": records})
+                    return 128 + interrupted[0]
+            report = compare(records, oracle, root=ROOT)
+            if args.output is not None:
+                args.output.parent.mkdir(parents=True, exist_ok=True)
+                args.output.write_text(json.dumps(report, indent=2, ensure_ascii=False, allow_nan=False) + "\n", encoding="utf-8")
+            _emit(report)
+            return int(bool(report["factual_errors"]))
         if args.command == "export":
             if args.read:
                 snapshot = exports.capture(args.output)
