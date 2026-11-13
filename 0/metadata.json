@@ -1,0 +1,85 @@
+{
+  "cli_version": "0.13.3",
+  "checkpoint_id": "01M7AY4SDKKXGVP9FKCM2GPK9Y",
+  "session_id": "01a1d59d-4104-7503-8c41-e99df4097b32",
+  "strategy": "manual-commit",
+  "created_at": "2026-11-13T17:09:07.264171935Z",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "save_step_count": 1,
+  "files_touched": [
+    "planning/step-04-test-first.txt",
+    "tests/inputs/provider-settings.json",
+    "tests/mock_responses/http/connection-then-independent-success.json",
+    "tests/mock_responses/http/fabricated-quote.json",
+    "tests/mock_responses/http/http-auth-error.json",
+    "tests/mock_responses/http/http-client-error.json",
+    "tests/mock_responses/http/interrupted-complete-looking.json",
+    "tests/mock_responses/http/interrupted-content.json",
+    "tests/mock_responses/http/interrupted-stream.json",
+    "tests/mock_responses/http/invalid-envelope.json",
+    "tests/mock_responses/http/malformed-content.json",
+    "tests/mock_responses/http/malformed-http-json.json",
+    "tests/mock_responses/http/mock-secret.json",
+    "tests/mock_responses/http/provider-error-envelope.json",
+    "tests/mock_responses/http/rate-limit-then-independent-success.json",
+    "tests/mock_responses/http/refusal.json",
+    "tests/mock_responses/http/schema-extra-property.json",
+    "tests/mock_responses/http/schema-nonobject.json",
+    "tests/mock_responses/http/success-override.json",
+    "tests/mock_responses/http/success.json",
+    "tests/mock_responses/http/timeout-then-independent-success.json",
+    "tests/mock_responses/http/transient-recovery.json",
+    "tests/mock_responses/http/unavailable-then-independent-success.json",
+    "tests/mock_responses/interrupted-text.json",
+    "tests/mock_responses/interrupted.json",
+    "tests/mock_responses/invalid/nonobject.json",
+    "tests/mock_responses/malformed.json",
+    "tests/mock_responses/refusal.json",
+    "tests/mock_responses/timeout.json",
+    "tests/test_http_provider.py"
+  ],
+  "agent": "Codex",
+  "model": "gpt-6.1-sol",
+  "turn_id": "891abc9030b9",
+  "checkpoint_transcript_start": 341,
+  "transcript_lines_at_start": 341,
+  "compact_transcript_start": 88,
+  "token_usage": {
+    "input_tokens": 13328,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 785280,
+    "output_tokens": 10668,
+    "api_call_count": 6
+  },
+  "session_token_usage": {
+    "input_tokens": 95381,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 3330816,
+    "output_tokens": 41674,
+    "api_call_count": 45
+  },
+  "redaction": {
+    "replacements": 2,
+    "layers": {
+      "betterleaks": 0,
+      "connection_string": 0,
+      "credential_key": 0,
+      "credential_value": 2,
+      "credentialed_uri": 0,
+      "entropy": 0,
+      "key_context": 0,
+      "pii": 0,
+      "provider_token": 0,
+      "shell_stdin": 0
+    },
+    "pii": {
+      "EMAIL": 0,
+      "IP": 0,
+      "PHONE": 0
+    }
+  },
+  "session_metrics": {
+    "turn_count": 7
+  }
+}
