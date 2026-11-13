@@ -1,0 +1,56 @@
+{
+  "cli_version": "0.13.3",
+  "checkpoint_id": "01M7AYH0TE28DH41TBPJN1CSDD",
+  "strategy": "manual-commit",
+  "branch": "main",
+  "checkpoints_count": 1,
+  "files_touched": [
+    "README.md",
+    "config/provider.json",
+    "deliverables/request-evidence.json",
+    "intake/extraction.py",
+    "intake/http_provider.py",
+    "intake/processing.py",
+    "intake/prompts.py",
+    "intake/providers.py",
+    "intake/review.py",
+    "planning/step-04-test-pass.txt",
+    "tools/request_evidence.py"
+  ],
+  "sessions": [
+    {
+      "metadata": "/0/metadata.json",
+      "transcript": "/0/full.jsonl",
+      "compact_transcript": "/0/transcript.jsonl",
+      "content_hash": "/0/content_hash.txt",
+      "prompt": "/0/prompt.txt"
+    }
+  ],
+  "token_usage": {
+    "input_tokens": 20917,
+    "cache_creation_tokens": 0,
+    "cache_read_tokens": 924032,
+    "output_tokens": 10512,
+    "api_call_count": 6
+  },
+  "redaction": {
+    "replacements": 12,
+    "layers": {
+      "betterleaks": 0,
+      "connection_string": 0,
+      "credential_key": 0,
+      "credential_value": 9,
+      "credentialed_uri": 0,
+      "entropy": 3,
+      "key_context": 0,
+      "pii": 0,
+      "provider_token": 0,
+      "shell_stdin": 0
+    },
+    "pii": {
+      "EMAIL": 0,
+      "IP": 0,
+      "PHONE": 0
+    }
+  }
+}
