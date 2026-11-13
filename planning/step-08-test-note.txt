@@ -1,0 +1,17 @@
+Observed during the step 8 test-first run:
+- The new accuracy module and handover documents are absent as expected.
+- T44's existing request-evidence check already passes.
+- T37's existing lease test failed at its second renewal wait; preserve that
+  full run in step-08-test-first-initial.txt.
+
+Test-only repair:
+The callback previously checked the fake clock after renewal returned. A clock
+advance between the renewal commit and that check could acknowledge an expiry
+written at the earlier time. The next fake-clock jump could then expire the
+lease before a genuine renewal at the new time. The callback now samples the
+clock once and signals only if the returned durable expiry covers a full lease
+from that sampled time. This strengthens the handshake without changing the
+application or weakening expiry/fencing assertions.
+
+The final test-first run is step-08-test-first.txt. No step 8 application code
+was added in this turn.

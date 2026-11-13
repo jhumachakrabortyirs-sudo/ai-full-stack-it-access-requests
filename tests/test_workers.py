@@ -124,7 +124,10 @@ class WorkerContract(unittest.TestCase):
 
         def trace_renew(store, claim, *, lease_seconds=300):
             result = original(store, claim, lease_seconds=lease_seconds)
-            if self.clock() >= 1011.0:
+            now = self.clock()
+            # A clock advance after COMMIT must not make an older renewal
+            # acknowledge the new time. Wait for a durably extended expiry.
+            if now >= 1011.0 and result["lease_expires_at"] >= now + lease_seconds:
                 renewed.set()
             return result
 
