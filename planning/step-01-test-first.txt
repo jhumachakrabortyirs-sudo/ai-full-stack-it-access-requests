@@ -1,0 +1,35 @@
+test_T01_scripted_calls_and_independent_release_without_key_or_network (test_mock_provider.MockProviderContract.test_T01_scripted_calls_and_independent_release_without_key_or_network) ... FAIL
+test_a_mock_reply_is_read_with_no_key_and_no_network (test_starter.MockResponse.test_a_mock_reply_is_read_with_no_key_and_no_network) ... ok
+test_each_request_export_has_message_text_and_a_hash (test_starter.SuppliedFiles.test_each_request_export_has_message_text_and_a_hash) ... ok
+test_the_schema_names_the_fields_it_requires (test_starter.SuppliedFiles.test_the_schema_names_the_fields_it_requires) ... ok
+
+======================================================================
+FAIL: test_T01_scripted_calls_and_independent_release_without_key_or_network (test_mock_provider.MockProviderContract.test_T01_scripted_calls_and_independent_release_without_key_or_network)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_mock_provider.py", line 63, in test_T01_scripted_calls_and_independent_release_without_key_or_network
+    module = importlib.import_module("intake.providers")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1310, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'intake'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_mock_provider.py", line 65, in test_T01_scripted_calls_and_independent_release_without_key_or_network
+    self.fail(f"Step 1 provider contract is absent: {exc}")
+AssertionError: Step 1 provider contract is absent: No module named 'intake'
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.004s
+
+FAILED (failures=1)
