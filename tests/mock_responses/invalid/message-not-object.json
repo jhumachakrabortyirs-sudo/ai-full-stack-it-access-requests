@@ -1,0 +1,8 @@
+{
+  "choices": [
+    {
+      "finish_reason": "stop",
+      "message": "text"
+    }
+  ]
+}
