@@ -10,8 +10,8 @@ SCHEMA_PATH = Path(__file__).resolve().parents[1] / "snapshot.schema.json"
 def build_messages(*, message: str) -> list[dict[str, str]]:
     """Return fresh messages; untrusted text never enters system instructions.
 
-    The HTTP adapter will use this builder in the next build step. Scripted
-    providers return saved envelopes without claiming semantic extraction.
+    The HTTP adapter uses this builder. Scripted providers return saved
+    envelopes without claiming semantic extraction.
     """
     if not isinstance(message, str):
         raise TypeError("Extraction message must be decoded text")

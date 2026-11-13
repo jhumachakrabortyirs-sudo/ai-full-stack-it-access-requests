@@ -132,8 +132,8 @@ def route_extraction(record: ExtractionRecord, *, source: SourceExport) -> Revie
 def review_file(path: Path, *, provider: Provider) -> ReviewRecord:
     """Validate one source snapshot before applying the review rules.
 
-    Extraction failures propagate as ExtractionError; failure queue records and
-    operator retry commands are introduced in step 4.
+    Extraction failures propagate as ExtractionError. intake.processing wraps
+    these failures in error records with operator retry instructions.
     """
     source = read_export(path)
     record = extract_source(source, provider=provider)

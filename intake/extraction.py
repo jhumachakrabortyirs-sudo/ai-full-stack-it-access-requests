@@ -72,6 +72,11 @@ def read_export(path: Path) -> SourceExport:
         raw = path.read_bytes()
     except OSError as exc:
         raise ExtractionError("invalid-export", "Cannot read source export file") from exc
+    return decode_export(raw, document_id=path.name)
+
+
+def decode_export(raw: bytes, *, document_id: str) -> SourceExport:
+    """Decode already-read bytes, allowing failures to retain their hash."""
     source_hash = hashlib.sha256(raw).hexdigest()
     try:
         export = _parse_json(raw.decode("utf-8"))
@@ -83,7 +88,7 @@ def read_export(path: Path) -> SourceExport:
         raise ExtractionError(
             "invalid-export", "Source export must be an object with a message string"
         )
-    return SourceExport(path.name, source_hash, raw, export["message"])
+    return SourceExport(document_id, source_hash, raw, export["message"])
 
 
 def validate_response(response: ProviderResponse, *, message: str) -> dict[str, Any]:

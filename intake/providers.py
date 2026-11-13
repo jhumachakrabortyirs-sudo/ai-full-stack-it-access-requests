@@ -20,6 +20,9 @@ class ProviderResponse:
 
 
 class Provider(Protocol):
+    response_source: str
+    provider_kind: str
+
     def complete(self, *, message: str) -> ProviderResponse:
         """Return a completion envelope; extraction validation happens later."""
         ...
@@ -40,6 +43,9 @@ class ScriptedProvider:
     network service. Each reply is read afresh, giving callers independent
     envelope objects even when several entries name the same fixture.
     """
+
+    response_source = "mock"
+    provider_kind = "mock"
 
     def __init__(self, *, mock_dir: Path, script: Sequence[Mapping[str, Any]]):
         self._mock_dir = Path(mock_dir).resolve()
