@@ -1,0 +1,10 @@
+test_T44_accuracy_document_contains_all_expected_fields_and_source_evidence (test_handover.HandoverContract.test_T44_accuracy_document_contains_all_expected_fields_and_source_evidence) ... ok
+test_T44_exact_documented_mock_commands_work_in_a_temporary_checkout (test_handover.HandoverContract.test_T44_exact_documented_mock_commands_work_in_a_temporary_checkout) ... ok
+test_T44_existing_request_evidence_matches_the_actual_builder_without_a_real_key (test_handover.HandoverContract.test_T44_existing_request_evidence_matches_the_actual_builder_without_a_real_key) ... ok
+test_T44_recorded_observations_are_labelled_configured_and_link_to_evidence (test_handover.HandoverContract.test_T44_recorded_observations_are_labelled_configured_and_link_to_evidence) ... ok
+test_T44_source_inventory_readme_and_verification_describe_supported_limits (test_handover.HandoverContract.test_T44_source_inventory_readme_and_verification_describe_supported_limits) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 4.388s
+
+OK

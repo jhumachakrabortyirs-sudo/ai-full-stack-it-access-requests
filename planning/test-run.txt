@@ -97,6 +97,6 @@ test_T40_200_400_2000_mock_documents_have_bounded_progress_and_resume (test_work
 test_T40_existing_revision_guard_keeps_new_source_current_after_late_old_completion (test_workers.WorkerContract.test_T40_existing_revision_guard_keeps_new_source_current_after_late_old_completion) ... ok
 
 ----------------------------------------------------------------------
-Ran 89 tests in 54.675s
+Ran 89 tests in 63.756s
 
 OK

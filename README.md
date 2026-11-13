@@ -141,8 +141,16 @@ env -u API_KEY python3 -m tools.handover
 
 This tool preserves the source-authored expectations, writes the measured report
 separately, and regenerates credential-redacted request evidence without a live
-provider call. Spec-line validation marks remain the human review required by
-`docs/03-implement-and-validate.md`.
+provider call. At the user's request, `planning/validation.md` now records an
+agent evidence audit, with 86 requirements met and three external submission
+requirements not verified. It remains available for independent human review.
+Recheck the saved artifacts and evidence links after running the full suite:
+
+```bash
+env -u API_KEY python3 tools/validate_submission.py
+```
+
+This writes `planning/validation-checks.json` and does not call a provider.
 
 `intake.providers.ScriptedProvider` consumes saved reply/error fixtures with
 optional event barriers for deterministic delays. `intake.extraction.read_export`

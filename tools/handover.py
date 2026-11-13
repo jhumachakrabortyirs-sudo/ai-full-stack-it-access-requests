@@ -168,8 +168,9 @@ def _verification_document(report, intake, evidence) -> str:
     return """# Verification and operator handover
 
 The following are reproducible mock checks and clearly labelled observations.
-They are evidence for the tested behavior; the final spec-line met/not-met
-decisions remain the human review described in docs/03-implement-and-validate.md.
+They are evidence for the tested behavior. At the user's request,
+planning/validation.md records an agent evidence audit; independent human review
+can use the workflow described in docs/03-implement-and-validate.md.
 
 ## Exact operator checks
 
@@ -305,9 +306,11 @@ External submission requirements are not performed by these checks:
 - R-80: submit only the root repository link through the Classroom assignment.
   No Classroom submission has been performed.
 
-The reviewer must also open each planning/validation.md evidence item and make
-the final spec-line marks. A passing test is evidence only for the assertions
-it actually exercises.
+The user-requested agent audit and counts are in planning/validation.md.
+Run env -u API_KEY python3 tools/validate_submission.py after the full suite to
+recheck saved artifacts and evidence links; it writes planning/validation-checks.json.
+Independent reviewers can inspect each marked row's evidence. A passing test is
+evidence only for the assertions it actually exercises.
 """
 
 
