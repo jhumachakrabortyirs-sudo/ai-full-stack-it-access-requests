@@ -1,0 +1,12 @@
+{
+  "choices": [
+    {
+      "index": 0,
+      "finish_reason": "stop",
+      "message": {
+        "role": "assistant",
+        "content": "{\"request_id\": \"{{request_id}}\", \"request_date\": \"2026-10-22\", \"kind\": \"withdrawal\", \"requester\": null, \"team\": null, \"system\": null, \"environment\": null, \"permission\": null, \"business_purpose\": null, \"start_date\": null, \"end_date\": null, \"manager\": null, \"supporting_quotes\": [\"Please withdraw {{request_id}}. Request date 2026-10-22.\"], \"issues\": [\"requester: absent from source\", \"team: absent from source\", \"system: absent from source\", \"environment: absent from source\", \"permission: absent from source\", \"business_purpose: absent from source\", \"start_date: absent from source\", \"end_date: absent from source\", \"manager: absent from source\"]}"
+      }
+    }
+  ]
+}
