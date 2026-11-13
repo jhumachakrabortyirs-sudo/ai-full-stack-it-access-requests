@@ -146,6 +146,7 @@ class HttpProvider:
         getenv: Callable | None = None, sleep: Callable = time.sleep,
         prompt_text: str | None = None, schema_text: str | None = None,
         prompt_version: str = PROMPT_VERSION,
+        on_retry: Callable[[str, int, float], None] | None = None,
     ):
         self.settings = settings
         self._transport = transport
@@ -154,6 +155,7 @@ class HttpProvider:
         self._prompt_text = prompt_text
         self._schema_text = schema_text
         self._prompt_version = prompt_version
+        self._on_retry = on_retry
 
     def extraction_assets(self) -> dict[str, Any]:
         configuration = self.settings.configuration()
@@ -173,6 +175,15 @@ class HttpProvider:
             getenv=self._getenv, sleep=self._sleep,
             prompt_text=snapshot["prompt_text"], schema_text=snapshot["schema_text"],
             prompt_version=version,
+            on_retry=self._on_retry,
+        )
+
+    def with_retry_callback(self, callback: Callable[[str, int, float], None]) -> "HttpProvider":
+        """Return a runtime copy; report only safe retry categories and timing."""
+        return HttpProvider(
+            settings=self.settings, transport=self._transport, getenv=self._getenv,
+            sleep=self._sleep, prompt_text=self._prompt_text, schema_text=self._schema_text,
+            prompt_version=self._prompt_version, on_retry=callback,
         )
 
     @property
@@ -259,6 +270,8 @@ class HttpProvider:
             if attempt + 1 == self.settings.max_attempts:
                 raise ProviderError(category, RESPONSE_HANDLING[category])
             delay = self._retry_delay(attempt, headers)
+            if self._on_retry is not None:
+                self._on_retry(category, attempt + 1, delay)
             LOGGER.info("Provider retry category=%s attempt=%d delay=%s", category, attempt + 1, delay)
             self._sleep(delay)
         raise AssertionError("Validated retry budget was not executed")

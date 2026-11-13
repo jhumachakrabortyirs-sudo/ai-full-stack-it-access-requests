@@ -2,7 +2,7 @@
 
 Completed attempts are immutable. Current pointers are separate from history;
 pending claims never impersonate a completed result. Provider I/O occurs outside
-transactions. Worker orchestration, lease renewal and recovery are step 6 work.
+transactions. Queued claims acquire a lease only when a worker starts them.
 """
 from contextlib import contextmanager
 from dataclasses import asdict, dataclass
@@ -154,15 +154,17 @@ BEGIN SELECT RAISE(ABORT, 'Attempts must be retained'); END;
 
 
 class StateStore:
-    def __init__(self, path: Path, *, clock: Callable[[], float] = time.time):
+    def __init__(self, path: Path, *, clock: Callable[[], float] = time.time, initialize: bool = True):
         self.path = Path(path)
         self.path.parent.mkdir(parents=True, exist_ok=True)
         self._clock = clock
         self._connection = sqlite3.connect(self.path, isolation_level=None, timeout=5)
         self._connection.row_factory = sqlite3.Row
         self._connection.execute("PRAGMA foreign_keys=ON")
-        self._connection.execute("PRAGMA journal_mode=WAL")
         self._connection.execute("PRAGMA synchronous=FULL")
+        if not initialize:
+            return
+        self._connection.execute("PRAGMA journal_mode=WAL")
         self._connection.executescript(_SCHEMA)
         for table in ("sources", "configurations", "attempt_events"):
             for action in ("UPDATE", "DELETE"):
@@ -236,9 +238,16 @@ class StateStore:
         rows = self._connection.execute("SELECT claim_json FROM attempts WHERE state='pending' ORDER BY sequence").fetchall()
         return [json.loads(row["claim_json"]) for row in rows]
 
+    def events(self, document_id: str) -> list[dict[str, Any]]:
+        rows = self._connection.execute(
+            "SELECT e.attempt_id,e.event,e.recorded_at FROM attempt_events e JOIN attempts a "
+            "ON a.attempt_id=e.attempt_id WHERE a.document_id=? ORDER BY e.sequence", (document_id,),
+        ).fetchall()
+        return [dict(row) for row in rows]
+
     def claim(
         self, path: Path, *, config: ProcessingConfig, operator: str,
-        lease_seconds: float = 300, force: bool = False,
+        lease_seconds: float = 300, force: bool = False, queued: bool = False,
     ) -> dict[str, Any]:
         """Atomically accept a source/configuration and reserve one attempt.
 
@@ -246,17 +255,28 @@ class StateStore:
         ClaimBusy. Files must be readable to accept a source revision; malformed
         readable bytes can still produce a durable invalid-export result.
         """
+        path = Path(path)
+        return self._claim_bytes(
+            path.read_bytes(), document_id=path.name, config=config, operator=operator,
+            lease_seconds=lease_seconds, force=force, queued=queued,
+        )
+
+    def _claim_bytes(
+        self, raw: bytes, *, document_id: str, config: ProcessingConfig, operator: str,
+        lease_seconds: float, force: bool = False, queued: bool = False,
+        expected_attempt_id: str | None = None,
+    ) -> dict[str, Any]:
         if not isinstance(operator, str) or not operator.strip():
             raise ValueError("operator must identify the claimant")
         if not isinstance(lease_seconds, (int, float)) or not math.isfinite(lease_seconds) or lease_seconds <= 0:
             raise ValueError("lease_seconds must be finite and positive")
-        path = Path(path)
-        raw = path.read_bytes()
         source_hash = _hash(raw)
         snapshot = config.snapshot()
         now = self._clock()
         with self._transaction() as db:
-            document = db.execute("SELECT * FROM documents WHERE document_id=?", (path.name,)).fetchone()
+            document = db.execute("SELECT * FROM documents WHERE document_id=?", (document_id,)).fetchone()
+            if expected_attempt_id is not None and (document is None or document["latest_attempt_id"] != expected_attempt_id):
+                raise StaleClaimError("A newer source or attempt superseded this recovery candidate")
             previous_source = None if document is None else db.execute(
                 "SELECT * FROM sources WHERE ingestion_sequence=?", (document["source_sequence"],),
             ).fetchone()
@@ -267,7 +287,7 @@ class StateStore:
                 revision = 1 if previous_source is None else previous_source["revision"] + 1
                 source_sequence = db.execute(
                     "INSERT INTO sources(document_id,revision,source_sha256,original_bytes) VALUES(?,?,?,?)",
-                    (path.name, revision, source_hash, raw),
+                    (document_id, revision, source_hash, raw),
                 ).lastrowid
             db.execute(
                 "INSERT INTO configurations(processing_fingerprint,snapshot_json) VALUES(?,?) ON CONFLICT DO NOTHING",
@@ -276,12 +296,15 @@ class StateStore:
             latest = None if document is None or document["latest_attempt_id"] is None else self._attempt(document["latest_attempt_id"])
             same_source = latest is not None and latest["source_sequence"] == source_sequence
             latest_result = None if latest is None or latest["state"] != "completed" else json.loads(latest["result_json"])
+            latest_queued = latest is not None and latest["state"] == "pending" and json.loads(latest["claim_json"]).get("service_state") == "queued"
             if not force and same_source and latest["config_fingerprint"] == config.processing_fingerprint:
                 if latest_result is not None and latest_result["error"] is None:
                     return latest_result
-                if latest["state"] == "pending" and latest["lease_expires_at"] > now:
+                if latest["state"] == "pending" and (latest_queued or latest["lease_expires_at"] > now):
                     raise ClaimBusy(json.loads(latest["claim_json"]))
-            if latest is not None and latest["state"] == "pending" and latest["lease_expires_at"] <= now:
+            abandoned_id = None
+            if latest is not None and latest["state"] == "pending" and (latest_queued or latest["lease_expires_at"] <= now):
+                abandoned_id = latest["attempt_id"]
                 db.execute("UPDATE attempts SET state='abandoned' WHERE attempt_id=?", (latest["attempt_id"],))
                 db.execute("INSERT INTO attempt_events(attempt_id,event,recorded_at) VALUES(?,?,?)", (latest["attempt_id"], "abandoned", now))
             routing_only = bool(
@@ -291,14 +314,14 @@ class StateStore:
             )
             attempt_id = uuid4().hex
             token = db.execute(
-                "SELECT COALESCE(MAX(fencing_token),0)+1 FROM attempts WHERE document_id=?", (path.name,),
+                "SELECT COALESCE(MAX(fencing_token),0)+1 FROM attempts WHERE document_id=?", (document_id,),
             ).fetchone()[0]
             claim = {
-                "attempt_id": attempt_id, "document_id": path.name,
+                "attempt_id": attempt_id, "document_id": document_id,
                 "source_sha256": source_hash, "source_revision": revision,
                 "ingestion_sequence": source_sequence, "state": "pending",
                 "operator": operator, "lease_owner": operator,
-                "lease_expires_at": now + lease_seconds, "fencing_token": token,
+                "lease_expires_at": 0.0 if queued else now + lease_seconds, "fencing_token": token,
                 "created_at": now, "attempt_kind": "routing" if routing_only else "extraction",
                 "extraction_attempt_id": latest_result["extraction_attempt_id"] if routing_only else attempt_id,
                 "routing_attempt_id": attempt_id,
@@ -307,18 +330,118 @@ class StateStore:
                     "prompt_sha256", "schema_sha256", "policy_sha256",
                 )},
             }
+            if queued:
+                claim["service_state"] = "queued"
+            if abandoned_id is not None:
+                claim["replaces_attempt_id"] = abandoned_id
             db.execute(
                 "INSERT INTO attempts(attempt_id,document_id,source_sequence,config_fingerprint,state,lease_owner,lease_expires_at,fencing_token,claim_json) "
                 "VALUES(?,?,?,?,?,?,?,?,?)",
-                (attempt_id, path.name, source_sequence, config.processing_fingerprint, "pending", operator, now + lease_seconds, token, _json(claim)),
+                (attempt_id, document_id, source_sequence, config.processing_fingerprint, "pending", operator, claim["lease_expires_at"], token, _json(claim)),
             )
             db.execute(
                 "INSERT INTO documents(document_id,source_sequence,latest_attempt_id) VALUES(?,?,?) "
                 "ON CONFLICT(document_id) DO UPDATE SET source_sequence=excluded.source_sequence,latest_attempt_id=excluded.latest_attempt_id",
-                (path.name, source_sequence, attempt_id),
+                (document_id, source_sequence, attempt_id),
             )
             db.execute("INSERT INTO attempt_events(attempt_id,event,recorded_at) VALUES(?,?,?)", (attempt_id, "claimed", now))
+            if abandoned_id is not None and expected_attempt_id is not None:
+                db.execute("INSERT INTO attempt_events(attempt_id,event,recorded_at) VALUES(?,?,?)", (attempt_id, "reclaimed", now))
         return claim
+
+    def activate_claim(
+        self, claim: dict[str, Any], *, operator: str, lease_seconds: float,
+        execution: dict[str, Any] | None = None,
+    ) -> dict[str, Any]:
+        """Atomically take a queued item; active ownership is never stolen."""
+        if not operator.strip() or not math.isfinite(lease_seconds) or lease_seconds <= 0:
+            raise ValueError("A positive lease and named operator are required")
+        with self._transaction() as db:
+            row = self._attempt(claim["attempt_id"])
+            if row["state"] == "completed":
+                return json.loads(row["result_json"])
+            saved = json.loads(row["claim_json"])
+            if row["state"] != "pending":
+                raise StaleClaimError("Queued item was abandoned")
+            if saved.get("service_state") != "queued":
+                raise ClaimBusy(saved)
+            latest = db.execute("SELECT latest_attempt_id FROM documents WHERE document_id=?", (row["document_id"],)).fetchone()[0]
+            if latest != row["attempt_id"]:
+                raise StaleClaimError("Queued item was superseded")
+            saved.update(
+                operator=operator, lease_owner=operator, lease_expires_at=self._clock() + lease_seconds,
+                fencing_token=row["fencing_token"] + 1, service_state="processing",
+            )
+            if execution is not None:
+                saved["execution"] = execution
+            db.execute(
+                "UPDATE attempts SET lease_owner=?,lease_expires_at=?,fencing_token=?,claim_json=? WHERE attempt_id=?",
+                (operator, saved["lease_expires_at"], saved["fencing_token"], _json(saved), row["attempt_id"]),
+            )
+            db.execute("INSERT INTO attempt_events(attempt_id,event,recorded_at) VALUES(?,?,?)", (row["attempt_id"], "started", self._clock()))
+        return saved
+
+    def renew_claim(self, claim: dict[str, Any], *, lease_seconds: float = 300) -> dict[str, Any]:
+        if not math.isfinite(lease_seconds) or lease_seconds <= 0:
+            raise ValueError("lease_seconds must be finite and positive")
+        with self._transaction() as db:
+            row = self._check_claim(claim)
+            if row["state"] != "pending":
+                raise StaleClaimError("Completed claims cannot be renewed")
+            saved = json.loads(row["claim_json"])
+            saved["lease_expires_at"] = max(row["lease_expires_at"], self._clock() + lease_seconds)
+            db.execute(
+                "UPDATE attempts SET lease_expires_at=?,claim_json=? WHERE attempt_id=?",
+                (saved["lease_expires_at"], _json(saved), row["attempt_id"]),
+            )
+            db.execute("INSERT INTO attempt_events(attempt_id,event,recorded_at) VALUES(?,?,?)", (row["attempt_id"], "renewed", self._clock()))
+        return saved
+
+    def note_retry(self, claim: dict[str, Any], category: str, attempt: int, delay: float) -> None:
+        if category not in {"rate-limit", "timeout", "unavailable"}:
+            raise ValueError("Unsupported retry state")
+        with self._transaction() as db:
+            row = self._check_claim(claim)
+            if row["state"] != "pending":
+                raise StaleClaimError("Completed claims cannot report retries")
+            saved = json.loads(row["claim_json"])
+            saved.update(service_state=category, retry_attempt=attempt, retry_delay=delay, next_retry_at=self._clock() + delay)
+            db.execute("UPDATE attempts SET claim_json=? WHERE attempt_id=?", (_json(saved), row["attempt_id"]))
+
+    def recovery_candidates(self, *, retry_errors: bool = False) -> list[dict[str, Any]]:
+        rows = self._connection.execute(
+            "SELECT a.* FROM attempts a JOIN documents d ON d.latest_attempt_id=a.attempt_id ORDER BY a.sequence"
+        ).fetchall()
+        candidates = []
+        for row in rows:
+            if row["state"] == "pending":
+                claim = json.loads(row["claim_json"])
+                if claim.get("service_state") == "queued" or row["lease_expires_at"] <= self._clock():
+                    candidates.append(claim)
+            elif retry_errors and row["state"] == "completed":
+                result = json.loads(row["result_json"])
+                if result["error"] is not None:
+                    candidates.append(result)
+        return candidates
+
+    def recover_claim(self, candidate: dict[str, Any], *, operator: str, lease_seconds: float) -> dict[str, Any]:
+        """Recover only the latest expired/failed attempt using saved bytes."""
+        row = self._attempt(candidate["attempt_id"])
+        if row["state"] == "pending":
+            saved = json.loads(row["claim_json"])
+            if saved.get("service_state") == "queued":
+                return saved
+            if row["lease_expires_at"] > self._clock():
+                raise ClaimBusy(saved)
+        elif row["state"] != "completed" or json.loads(row["result_json"])["error"] is None:
+            raise StaleClaimError("Attempt is not recoverable")
+        source = self._source_row(row["attempt_id"])
+        snapshot = self.configuration(row["attempt_id"])
+        return self._claim_bytes(
+            source["original_bytes"], document_id=row["document_id"], config=ProcessingConfig(_json(snapshot)),
+            operator=operator, lease_seconds=lease_seconds, force=row["state"] == "completed",
+            queued=True, expected_attempt_id=row["attempt_id"],
+        )
 
     def _check_claim(self, claim: dict[str, Any]) -> sqlite3.Row:
         row = self._attempt(claim["attempt_id"])
@@ -355,11 +478,14 @@ class StateStore:
             result = asdict(review.route_extraction(extracted, source=source, policy=policy))
         except ExtractionError as exc:
             result = asdict(_failure(metadata["document_id"], metadata["source_sha256"], exc.category, runtime))
-        completed = {**metadata, **result, "state": "completed", "completed_at": self._clock()}
         with self._transaction() as db:
             latest = self._check_claim(claim)
             if latest["state"] == "completed":
                 return json.loads(latest["result_json"])
+            metadata = json.loads(latest["claim_json"])
+            completed = {**metadata, **result, "state": "completed", "completed_at": self._clock()}
+            if "service_state" in completed:
+                completed["service_state"] = "completed" if result["error"] is None else result["error_category"]
             db.execute(
                 "UPDATE attempts SET state='completed',result_json=?,raw_extraction_json=? WHERE attempt_id=?",
                 (_json(completed), None if raw_extraction is None else _json(raw_extraction), row["attempt_id"]),

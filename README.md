@@ -1,9 +1,10 @@
 # IT access-request intake
 
 Python 3.11+ application being built in the order in `planning/plan.md`.
-Steps 1–5 provide scripted and HTTP providers, extraction validation, ordered
-routing for human review, explicit failure records, and durable SQLite state.
-The operator CLI, parallel workers and coordinated recovery are later steps.
+Steps 1–6 provide scripted and HTTP providers, extraction validation, ordered
+routing for human review, explicit failure records, durable SQLite state,
+bounded workers and coordinated recovery. The operator CLI and consistent
+file exports are step 7 work.
 
 Setup requires Python 3.11+ with the `venv` module and system pip 22.3+.
 From the repository root:
@@ -110,12 +111,88 @@ source and configuration snapshots. Claims and completion commits are separate;
 settings and policy even if their files have subsequently changed or vanished.
 
 State intake requires readable files to accept a durable source revision;
-malformed readable exports can be retained as error attempts. Claims default
-to a 300-second lease and must complete before expiry. Step 5 verifies
-close/reopen recovery, revisions, reuse and provenance. Lease renewal,
-multi-process operation, forced process interruption and burst workloads are
-step 6 work and have not yet been validated. The CLI retry commands remain
-planned for step 7. No live throughput or multi-host operation is claimed.
+malformed readable exports can be retained as error attempts. Direct
+`StateStore.intake` remains sequential. Use `intake.workers.run_intake` for
+bounded parallel processing and `intake.workers.resume` for recovery. Both
+accept a database path, `provider_factory`, operator name, `max_workers`,
+lease duration and optional heartbeat interval. `run_intake` also accepts input
+paths and the captured `ProcessingConfig`. Runtime worker limits are recorded
+in each started attempt's `execution` metadata.
+
+For parallel processing with the pinned HTTP configuration:
+
+```python
+import json
+from pathlib import Path
+from intake.http_provider import HttpProvider, ProviderSettings
+from intake.state import ProcessingConfig
+from intake.workers import run_intake, resume
+
+settings = ProviderSettings(**json.loads(Path("config/provider.json").read_text()))
+provider = HttpProvider(settings=settings)
+config = ProcessingConfig.capture(
+    provider=provider, policy_path=Path("materials/office-policy.md"),
+)
+run_intake(
+    Path("state/intake.sqlite3"), sorted(Path("materials/requests").glob("*.json")),
+    provider_factory=lambda: HttpProvider(settings=settings), config=config,
+    operator="regional-operator-a", max_workers=4,
+)
+# After an interruption, using the same runtime provider kind:
+resume(
+    Path("state/intake.sqlite3"), provider_factory=lambda: HttpProvider(settings=settings),
+    operator="regional-operator-b", max_workers=4,
+)
+```
+
+This example makes real provider requests using `API_KEY`. Acceptance tests
+instead supply fixture providers or injected HTTP transports. Each provider
+factory should return a provider safe for its worker; HTTP providers restore
+the model/settings and prompt/schema from the attempt snapshot during resume.
+
+Accepted sources are committed to a durable queue before workers start.
+Queued work has no active lease; activation atomically assigns an owner, expiry
+and fencing token. Calls default to four workers per operator, configurable
+from 1 to 32. Each active call renews its 300-second lease every five seconds
+by default, using a separate SQLite connection. Choose a heartbeat interval
+shorter than the lease. The shared host clock determines lease expiry.
+
+Two operators can start the same intake: valid active claims are skipped,
+completed successes are reused, and queued work is taken once. Concurrency is
+bounded per operator; there is no central requests-per-second quota across
+operators. HTTP rate limits use the bounded per-call retry/backoff mechanism.
+`pending()` exposes `queued`, `processing`, `rate-limit`, `timeout` or
+`unavailable` service states with retry timing where applicable. Completed
+extraction errors remain visible in `current()` with actionable retry guidance.
+
+Pass a `threading.Event` as `stop_event` for a graceful stop: accepted queued
+sources stay durable, no new calls start after the stop is observed, and
+in-flight calls drain. An optional `on_result` callback runs after a result is
+committed so operators can observe progress while other calls are pending.
+After a forced process interruption, resume starts queued work and reclaims
+expired active leases from saved source/configuration bytes. It does not steal
+a live lease or reprocess completed successes. Use `retry_errors=True` to also
+retry latest completed errors. Original files need not still exist.
+
+`store.events(document_id)` preserves claim, start, renewal, abandonment,
+reclamation and completion events. A reclaimed worker's old fencing token
+cannot publish or renew. A late completion of an older source revision can
+remain in history while the current pointer keeps the newer accepted result.
+Result publication and the current-pointer update commit together; interruption
+before commit leaves pending work, and interruption after commit preserves the
+whole result.
+
+The operating context is 200–400 messages daily and roughly 2,000 during a
+burst, on one host with a shared local SQLite database. T37–T40 exercise delayed
+calls, visible backoff, two actual operator processes, forced worker termination,
+crashes around commit, lease recovery, stale workers and source revision races.
+The mock workload checks use 200, 400 and 2,000 authored withdrawals with four
+workers, stop partway, delete the exports and resume from saved bytes. Each
+check asserts one current result per document and preserves earlier completions.
+These observed results use scripted fixtures and fake clocks; they establish
+the tested state/recovery behavior, not live model accuracy, live service
+throughput, hardware power-loss durability or multi-host/network-filesystem
+support. CLI intake, pending and retry commands remain step 7 work.
 
 The HTTP adapter implements non-streaming Chat Completions with strict JSON
 Schema output. The pinned configuration in `config/provider.json` targets
