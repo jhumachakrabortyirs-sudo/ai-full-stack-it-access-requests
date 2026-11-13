@@ -1,0 +1,105 @@
+{
+  "source": "planning/plan.md supplied-message fact ledger; office-policy.md ordered rules 1\u20135; fields remain in tests/expected_facts.json",
+  "routes": {
+    "IT-001.json": [
+      "review",
+      "System Owner",
+      "review-request"
+    ],
+    "IT-002.json": [
+      "review",
+      "Security Review",
+      "review-risk-then-owner"
+    ],
+    "IT-003.json": [
+      "needs-information",
+      "IT Service Desk",
+      "clarify"
+    ],
+    "IT-004.json": [
+      "needs-information",
+      "IT Service Desk",
+      "clarify"
+    ],
+    "IT-005.json": [
+      "review",
+      "IT Service Desk",
+      "confirm-withdrawal"
+    ],
+    "IT-006.json": [
+      "review",
+      "IT Service Desk",
+      "inspect-message"
+    ],
+    "IT-007.json": [
+      "review",
+      "Security Review",
+      "review-risk-then-owner"
+    ],
+    "IT-008.json": [
+      "review",
+      "System Owner",
+      "review-request"
+    ],
+    "IT-009.json": [
+      "needs-information",
+      "IT Service Desk",
+      "clarify"
+    ],
+    "IT-010.json": [
+      "needs-information",
+      "IT Service Desk",
+      "clarify"
+    ],
+    "IT-011.json": [
+      "needs-information",
+      "IT Service Desk",
+      "clarify"
+    ],
+    "IT-012.json": [
+      "review",
+      "Security Review",
+      "review-risk-then-owner"
+    ],
+    "IT-013.json": [
+      "review",
+      "Security Review",
+      "review-risk-then-owner"
+    ],
+    "IT-014.json": [
+      "needs-information",
+      "IT Service Desk",
+      "clarify"
+    ],
+    "IT-015.json": [
+      "review",
+      "System Owner",
+      "review-request"
+    ],
+    "IT-016.json": [
+      "needs-information",
+      "IT Service Desk",
+      "clarify"
+    ],
+    "IT-017.json": [
+      "needs-information",
+      "IT Service Desk",
+      "clarify"
+    ],
+    "IT-018.json": [
+      "review",
+      "System Owner",
+      "review-request"
+    ],
+    "IT-019.json": [
+      "review",
+      "Security Review",
+      "review-risk-then-owner"
+    ],
+    "IT-020.json": [
+      "needs-information",
+      "IT Service Desk",
+      "clarify"
+    ]
+  }
+}
