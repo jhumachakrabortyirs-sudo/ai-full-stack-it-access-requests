@@ -1,0 +1,16 @@
+test_T02_all_20_exports_keep_filename_hash_and_only_decoded_message (test_extraction.ExtractionContract.test_T02_all_20_exports_keep_filename_hash_and_only_decoded_message) ... ok
+test_T02_export_metadata_cannot_supply_request_facts (test_extraction.ExtractionContract.test_T02_export_metadata_cannot_supply_request_facts) ... ok
+test_T02_fresh_synthetic_export_accepts_exactly_200_words (test_extraction.ExtractionContract.test_T02_fresh_synthetic_export_accepts_exactly_200_words) ... ok
+test_T02_original_bytes_survive_decoding_and_reformat_changes_hash (test_extraction.ExtractionContract.test_T02_original_bytes_survive_decoding_and_reformat_changes_hash) ... ok
+test_T03_accepts_declared_schema_shapes_and_minimal_withdrawal (test_extraction.ExtractionContract.test_T03_accepts_declared_schema_shapes_and_minimal_withdrawal) ... ok
+test_T03_bare_extraction_object_is_not_a_completed_envelope (test_extraction.ExtractionContract.test_T03_bare_extraction_object_is_not_a_completed_envelope) ... ok
+test_T03_invalid_responses_never_return_a_successful_extraction (test_extraction.ExtractionContract.test_T03_invalid_responses_never_return_a_successful_extraction) ... ok
+test_T01_scripted_calls_and_independent_release_without_key_or_network (test_mock_provider.MockProviderContract.test_T01_scripted_calls_and_independent_release_without_key_or_network) ... ok
+test_a_mock_reply_is_read_with_no_key_and_no_network (test_starter.MockResponse.test_a_mock_reply_is_read_with_no_key_and_no_network) ... ok
+test_each_request_export_has_message_text_and_a_hash (test_starter.SuppliedFiles.test_each_request_export_has_message_text_and_a_hash) ... ok
+test_the_schema_names_the_fields_it_requires (test_starter.SuppliedFiles.test_the_schema_names_the_fields_it_requires) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.150s
+
+OK
