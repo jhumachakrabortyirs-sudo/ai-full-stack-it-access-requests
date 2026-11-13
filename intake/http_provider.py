@@ -20,6 +20,7 @@ from urllib.request import HTTPRedirectHandler, Request, build_opener
 
 from .extraction import _parse_json
 from .prompts import PROMPT_VERSION, SCHEMA_PATH, build_messages
+from . import prompts
 from .providers import ProviderError, ProviderResponse
 
 
@@ -143,23 +144,51 @@ class HttpProvider:
     def __init__(
         self, *, settings: ProviderSettings, transport: Callable = http_transport,
         getenv: Callable | None = None, sleep: Callable = time.sleep,
+        prompt_text: str | None = None, schema_text: str | None = None,
+        prompt_version: str = PROMPT_VERSION,
     ):
         self.settings = settings
         self._transport = transport
         self._getenv = os.getenv if getenv is None else getenv
         self._sleep = sleep
+        self._prompt_text = prompt_text
+        self._schema_text = schema_text
+        self._prompt_version = prompt_version
+
+    def extraction_assets(self) -> dict[str, Any]:
+        configuration = self.settings.configuration()
+        configuration["prompt_version"] = self._prompt_version
+        return {
+            "model_configuration": configuration,
+            "prompt_text": prompts.PROMPT_PATH.read_bytes().decode("utf-8") if self._prompt_text is None else self._prompt_text,
+            "schema_text": SCHEMA_PATH.read_bytes().decode("utf-8") if self._schema_text is None else self._schema_text,
+        }
+
+    def with_snapshot(self, snapshot: dict[str, Any]) -> "HttpProvider":
+        """Use saved assets/settings while retaining the injected runtime I/O."""
+        values = dict(snapshot["model_configuration"])
+        version = values.pop("prompt_version")
+        return HttpProvider(
+            settings=ProviderSettings(**values), transport=self._transport,
+            getenv=self._getenv, sleep=self._sleep,
+            prompt_text=snapshot["prompt_text"], schema_text=snapshot["schema_text"],
+            prompt_version=version,
+        )
 
     @property
     def response_source(self) -> str:
         return f"{self.settings.provider}/{self.settings.model}"
 
     def build_request(self, *, message: str, api_key: str) -> HttpRequest:
+        assets = self.extraction_assets()
         body = {
-            "model": self.settings.model, "messages": build_messages(message=message),
+            "model": self.settings.model, "messages": build_messages(
+                message=message, prompt_text=assets["prompt_text"], schema_text=assets["schema_text"],
+            ),
             **self.settings.generation,
             "response_format": {"type": "json_schema", "json_schema": {
                 "name": "access_request", "strict": True,
-                "schema": json.loads(SCHEMA_PATH.read_text(encoding="utf-8")),
+                "schema": json.loads(assets["schema_text"]),
             }},
         }
         return HttpRequest(
@@ -175,7 +204,7 @@ class HttpProvider:
         headers["Authorization"] = "[REDACTED]"
         return {
             "observation": {"kind": "request-example-only", "provider_call_performed": False},
-            "configuration": self.settings.configuration(),
+            "configuration": self.extraction_assets()["model_configuration"],
             "request": {"url": request.url, "method": request.method,
                         "headers": headers, "body": json.loads(request.body.decode("utf-8"))},
             "response_handling": dict(RESPONSE_HANDLING),

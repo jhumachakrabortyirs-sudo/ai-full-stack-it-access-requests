@@ -1,9 +1,9 @@
 # IT access-request intake
 
 Python 3.11+ application being built in the order in `planning/plan.md`.
-Steps 1–4 provide scripted and HTTP providers, extraction validation, ordered
-routing for human review, and independent processing with explicit failure
-records. The operator CLI, persistence and parallel workers are later steps.
+Steps 1–5 provide scripted and HTTP providers, extraction validation, ordered
+routing for human review, explicit failure records, and durable SQLite state.
+The operator CLI, parallel workers and coordinated recovery are later steps.
 
 Setup requires Python 3.11+ with the `venv` module and system pip 22.3+.
 From the repository root:
@@ -49,9 +49,73 @@ unresolved extraction issues conservatively require clarification after the
 override and withdrawal rules. This lower-level review API propagates
 `ExtractionError`; `intake.processing.process_file` converts it to an error
 record with null extraction, category, source identity and retry instructions.
-`process_files` continues after a failed document. Processing is currently
-sequential and has no durable attempt state. Unreadable files have no source
-hash; malformed readable exports retain the hash of their original bytes.
+`process_files` continues after a failed document. This service is sequential
+and stateless; the `StateStore` API below adds durable attempts. Unreadable files
+have no source hash; malformed readable exports retain the hash of their
+original bytes.
+
+`intake.state.StateStore` uses SQLite WAL on one local host and local filesystem.
+It stores original source bytes, document revisions, ingestion sequence,
+configuration snapshots, operator identity and completed attempts. Sources,
+configuration snapshots, events and completed attempts are retained with
+database triggers preventing updates/deletes. Current pointers and pending
+claims are stored separately. Provider calls run outside write transactions.
+
+For persistent mock intake from the repository root, after activating `.venv`:
+
+```python
+from pathlib import Path
+from intake.providers import ScriptedProvider
+from intake.state import ProcessingConfig, StateStore
+
+provider = ScriptedProvider(mock_dir=Path("tests/mock_responses"), script=[
+    {"reply": "complete-001.json"}, {"reply": "complete-002.json"},
+])
+config = ProcessingConfig.capture(
+    provider=provider, policy_path=Path("materials/office-policy.md"),
+)
+with StateStore(Path("state/intake.sqlite3")) as store:
+    records = store.intake(
+        [Path("materials/requests/IT-001.json"), Path("materials/requests/IT-002.json")],
+        provider=provider, config=config, operator="operator-a",
+    )
+    print([(record["document_id"], record["status"]) for record in records])
+    print(store.pending())
+```
+
+An unchanged success reuses its original attempt without another provider call,
+including after reopening the database. Changes to original bytes create a new
+source revision; byte-format-only changes count. New source/model/generation/
+prompt/schema settings create an extraction attempt. `force=True` bypasses
+success reuse; a failed retry becomes current and retains the earlier success
+in history. A regular rerun after failure creates another attempt. Later
+incremental batches preserve documents absent from that batch, and filenames
+remain independent even when messages state the same request ID.
+
+A policy-only refresh reuses the original validated extraction and creates a
+routing attempt linked by `extraction_attempt_id` and `routing_attempt_id`.
+The supported policy template permits destination edits to the supplied five
+review rules; changed conditions/order require routing-code and test changes.
+Extraction rules remain in the versioned extraction prompt, so changes to
+those rules require updating that prompt and its tests. Policy text alone is
+not an executable language for arbitrary new business rules.
+
+`store.current()` returns the current completed result per document.
+`store.history(document_id)` returns all completed attempts in acceptance
+order, including the current one. `store.pending()` returns unfinished claims
+with source/configuration identity, lease owner/expiry and fencing token.
+`store.source(attempt_id)` and `store.configuration(attempt_id)` retrieve saved
+source and configuration snapshots. Claims and completion commits are separate;
+`store.run_claim(claim, provider=provider)` uses saved bytes, prompt/schema,
+settings and policy even if their files have subsequently changed or vanished.
+
+State intake requires readable files to accept a durable source revision;
+malformed readable exports can be retained as error attempts. Claims default
+to a 300-second lease and must complete before expiry. Step 5 verifies
+close/reopen recovery, revisions, reuse and provenance. Lease renewal,
+multi-process operation, forced process interruption and burst workloads are
+step 6 work and have not yet been validated. The CLI retry commands remain
+planned for step 7. No live throughput or multi-host operation is claimed.
 
 The HTTP adapter implements non-streaming Chat Completions with strict JSON
 Schema output. The pinned configuration in `config/provider.json` targets

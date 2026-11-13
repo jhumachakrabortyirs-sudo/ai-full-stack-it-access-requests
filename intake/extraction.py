@@ -91,7 +91,9 @@ def decode_export(raw: bytes, *, document_id: str) -> SourceExport:
     return SourceExport(document_id, source_hash, raw, export["message"])
 
 
-def validate_response(response: ProviderResponse, *, message: str) -> dict[str, Any]:
+def validate_response(
+    response: ProviderResponse, *, message: str, schema_text: str | None = None,
+) -> dict[str, Any]:
     """Require completion, valid extraction JSON/schema and literal quotes.
 
     Validation errors describe structure rather than echoing response content.
@@ -125,7 +127,7 @@ def validate_response(response: ProviderResponse, *, message: str) -> dict[str, 
         raise ExtractionError("malformed-json", "Completion content is not valid JSON") from exc
 
     # Load the supplied schema rather than duplicating its rules in Python.
-    schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8"))
+    schema = json.loads(SCHEMA_PATH.read_text(encoding="utf-8") if schema_text is None else schema_text)
     validator = Draft202012Validator(schema)
     error = next(validator.iter_errors(extraction), None)
     if error is not None:
@@ -149,13 +151,15 @@ def extract_file(path: Path, *, provider: Provider) -> ExtractionRecord:
     return extract_source(read_export(path), provider=provider)
 
 
-def extract_source(source: SourceExport, *, provider: Provider) -> ExtractionRecord:
+def extract_source(
+    source: SourceExport, *, provider: Provider, schema_text: str | None = None,
+) -> ExtractionRecord:
     """Extract an already-read snapshot so routing uses those same bytes."""
     try:
         response = provider.complete(message=source.message)
     except ProviderError as exc:
         raise ExtractionError(exc.category, "Provider failed to produce an extraction") from exc
-    extraction = validate_response(response, message=source.message)
+    extraction = validate_response(response, message=source.message, schema_text=schema_text)
     return ExtractionRecord(
         document_id=source.document_id,
         source_sha256=source.source_sha256,
