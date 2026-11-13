@@ -1,0 +1,14 @@
+{
+  "base_url": "https://provider.example.invalid/v1",
+  "provider": "fixture-provider",
+  "model": "fixture-model-v1",
+  "timeout": 7.5,
+  "max_attempts": 3,
+  "retry_base_delay": 1.0,
+  "retry_max_delay": 4.0,
+  "generation": {
+    "temperature": 0,
+    "top_p": 1,
+    "max_tokens": 1024
+  }
+}

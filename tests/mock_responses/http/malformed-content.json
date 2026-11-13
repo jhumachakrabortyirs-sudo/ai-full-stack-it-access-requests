@@ -1,0 +1,9 @@
+{
+  "steps": [
+    {
+      "status": 200,
+      "headers": {},
+      "body_fixture": "malformed.json"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "steps": [
+    {
+      "exception": "timeout",
+      "message": "Fixture timeout fixture-secret-do-not-log"
+    },
+    {
+      "exception": "timeout",
+      "message": "Fixture timeout fixture-secret-do-not-log"
+    },
+    {
+      "exception": "timeout",
+      "message": "Fixture timeout fixture-secret-do-not-log"
+    },
+    {
+      "status": 200,
+      "headers": {},
+      "body_fixture": "complete-002.json"
+    }
+  ]
+}

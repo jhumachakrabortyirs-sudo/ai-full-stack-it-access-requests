@@ -1,0 +1,4 @@
+{
+  "category": "timeout",
+  "message": "Scripted timeout; retry this document"
+}

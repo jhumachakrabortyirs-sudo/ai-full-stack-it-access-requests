@@ -1,0 +1,29 @@
+{
+  "steps": [
+    {
+      "status": 429,
+      "headers": {
+        "Retry-After": "999"
+      },
+      "body_json": {
+        "error": {
+          "message": "Fixture upstream error containing fixture-secret-do-not-log"
+        }
+      }
+    },
+    {
+      "status": 503,
+      "headers": {},
+      "body_json": {
+        "error": {
+          "message": "Fixture upstream error containing fixture-secret-do-not-log"
+        }
+      }
+    },
+    {
+      "status": 200,
+      "headers": {},
+      "body_fixture": "complete-001.json"
+    }
+  ]
+}
