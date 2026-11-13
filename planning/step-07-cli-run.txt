@@ -1,0 +1,23 @@
+{
+  "observation": "Observed native CLI run using mock responses; no live provider call",
+  "commands": [
+    "env -u API_KEY python3 -m intake --db state/submission.sqlite3 run materials/requests --provider mock --operator submission-mock",
+    "env -u API_KEY python3 -m intake --db state/submission.sqlite3 export --output deliverables",
+    "env -u API_KEY python3 -m intake --db state/submission.sqlite3 export --output deliverables --read"
+  ],
+  "response_source": "mock",
+  "provider": "mock",
+  "model": "scripted-fixtures",
+  "catalog": "tests/mock_responses/catalog.json",
+  "catalog_sha256": "b5b19fa107d04614253ca8e1519ab10abe3738bbe64392a311f4918c0aec1d0e",
+  "processing_fingerprint": "63f87fd4527fc6020671e13d43fd086b3441d5135a5a417f2c1a045f62bdf0c0",
+  "policy_sha256": "b949596765aef45377d9f8d0792f9113109b1f811ef4f3be26919c162e1f631a",
+  "workers": 4,
+  "records": 20,
+  "status_counts": {
+    "review": 11,
+    "needs-information": 9
+  },
+  "matching_source_attempt_links": true,
+  "generation": "9e6eaf254fb64a80a833d1df9bcb90fd"
+}

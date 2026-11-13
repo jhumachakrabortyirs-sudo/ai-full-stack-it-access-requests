@@ -1,10 +1,11 @@
 # IT access-request intake
 
 Python 3.11+ application being built in the order in `planning/plan.md`.
-Steps 1–6 provide scripted and HTTP providers, extraction validation, ordered
-routing for human review, explicit failure records, durable SQLite state,
-bounded workers and coordinated recovery. The operator CLI and consistent
-file exports are step 7 work.
+Steps 1–7 provide an operator CLI, scripted and HTTP providers, extraction
+validation, ordered human-review routing, durable SQLite state, bounded workers,
+recovery and consistent file exports. Accuracy reporting and the remaining
+handover documents are step 8 work. Supported operation is Python 3.11+ on
+Linux with a shared local filesystem; exports use POSIX locks and symlinks.
 
 Setup requires Python 3.11+ with the `venv` module and system pip 22.3+.
 From the repository root:
@@ -21,6 +22,95 @@ where `ensurepip` is unavailable. The system pip installs the pinned runtime
 dependencies into `.venv`. Installation requires package access or a prepared
 offline package source; the tests themselves use saved mock responses, block
 network connections and forbid reading `API_KEY`.
+
+Run these commands from the repository root with `.venv` activated. Mock mode
+uses only the explicitly saved responses in `tests/mock_responses/catalog.json`:
+
+```bash
+env -u API_KEY python3 -m intake run materials/requests --provider mock --operator reviewer-a
+env -u API_KEY python3 -m intake queue
+env -u API_KEY python3 -m intake pending
+env -u API_KEY python3 -m intake history --document IT-001.json
+env -u API_KEY python3 -m intake history --document IT-001.json --events
+```
+
+The shared database defaults to `state/intake.sqlite3`. Supply `--db PATH`
+before or after the command to select another local database. Inspection
+commands produce JSON arrays. `run` accepts JSON files or directories and
+defaults to four workers. Use `--workers`, `--lease-seconds` and
+`--heartbeat-interval` to configure execution. An unchanged rerun reuses
+completed successes; `run --force` creates fresh attempts.
+
+Targeted retry uses saved bytes and policy, so the export file can be absent:
+
+```bash
+env -u API_KEY python3 -m intake retry --document IT-001.json --provider mock --operator reviewer-a
+env -u API_KEY python3 -m intake resume --provider mock --operator reviewer-b
+env -u API_KEY python3 -m intake resume --provider mock --retry-errors --operator reviewer-b
+```
+
+`retry` forces only the named document. Error records include a shell-quoted
+retry command with the actual database and mock directory. Native mock attempts
+archive their catalog/fixtures, prompt and schema. Default retry and resume use
+saved settings; pass `retry --mock-dir PATH` to deliberately load a repaired
+catalog and capture its new hashes. Mock catalogs map decoded message hashes
+to explicit reply/error fixtures. Unknown messages produce an actionable mock
+error without a live-provider fallback. The source hash still uses original
+export bytes independently of that fixture lookup.
+
+Mutation commands return JSON arrays; exit code 0 indicates no extraction
+errors, 1 indicates error records, and 2 indicates argument/configuration/I/O
+failure. Ctrl-C or SIGTERM stops scheduling, drains in-flight work and leaves
+queued work saved, returning 130 or 143. A killed process is recovered after
+its active leases expire. Resume infers a single saved provider kind or accepts
+`--provider` to select one kind in a mixed queue. Each HTTP attempt restores
+its own saved settings and reads `API_KEY` only when making its provider call.
+
+Publish and read a consistent current export:
+
+```bash
+env -u API_KEY python3 -m intake export --output deliverables
+env -u API_KEY python3 -m intake export --output deliverables --read
+```
+
+The first command writes an immutable generation from one SQLite read
+transaction, then atomically switches `deliverables/current`. The root files
+`deliverables/queue.json` and `deliverables/extractions.jsonl` are relative
+symlinks through that reference. Generation manifests include record counts
+and SHA-256 digests. Existing handover files, including request evidence, stay
+in place. Publication locks serialize writers; source processing can continue.
+
+Readers capture the reference once and open both files under that generation.
+The CLI `export --read` performs this protocol. The Python equivalent is:
+
+```python
+from pathlib import Path
+from intake.exports import capture
+
+snapshot = capture(Path("deliverables"))
+queue, extractions = snapshot.read()
+```
+
+Opening the two root aliases independently during publication can mix
+generations. Captured generations remain available because publication does
+not rewrite or delete them. Failed/crashed publication can leave an
+unreferenced generation; readers ignore it. Before the first successful
+publication, there is no readable snapshot. T42 terminates actual publishers
+at seven boundaries and checks that the current pair is wholly old or new.
+
+The committed current files were generated with mock responses using:
+
+```bash
+env -u API_KEY python3 -m intake --db state/submission.sqlite3 run materials/requests --provider mock --operator submission-mock
+env -u API_KEY python3 -m intake --db state/submission.sqlite3 export --output deliverables
+```
+
+`planning/step-07-cli-run.txt` records the commands/configuration and observed
+20 records: 11 awaiting review and 9 needing information, with matching source
+and attempt links. This is a mock application observation, not measured live
+extraction accuracy. SQLite databases and publication lock files are ignored
+by Git; the current generation, its manifest and relative references are the
+reviewable output artifacts.
 
 `intake.providers.ScriptedProvider` consumes saved reply/error fixtures with
 optional event barriers for deterministic delays. `intake.extraction.read_export`
@@ -192,7 +282,9 @@ check asserts one current result per document and preserves earlier completions.
 These observed results use scripted fixtures and fake clocks; they establish
 the tested state/recovery behavior, not live model accuracy, live service
 throughput, hardware power-loss durability or multi-host/network-filesystem
-support. CLI intake, pending and retry commands remain step 7 work.
+support. T41 additionally exercises native CLI run/inspection/retry/resume,
+unknown mock inputs, and installation of the pinned dependencies into a fresh
+environment from prepared local wheels on this same interpreter/platform.
 
 The HTTP adapter implements non-streaming Chat Completions with strict JSON
 Schema output. The pinned configuration in `config/provider.json` targets
@@ -218,9 +310,13 @@ Retry-After values can increase the delay up to the configured cap; invalid or
 date-form headers fall back to exponential delay. The default timeout is 30
 seconds per socket operation, not an overall processing deadline. Refusal,
 interruption, malformed JSON, schema/quote errors and ordinary HTTP client
-errors require explicit operator retry. Retry strings reserve the CLI interface
-planned for step 7; until then, rerun `process_file` using the same provider
-settings. Successful records use `mock` or `provider/model` response provenance.
+errors require explicit operator retry. Successful records use `mock` or
+`provider/model` response provenance. To use the HTTP adapter through the CLI,
+set `API_KEY` in your environment and run:
+
+```bash
+python3 -m intake run materials/requests --provider http --config config/provider.json --operator reviewer-a
+```
 
 To construct the configured provider for the Python service:
 

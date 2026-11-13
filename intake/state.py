@@ -10,6 +10,7 @@ import hashlib
 import json
 import math
 from pathlib import Path
+import shlex
 import sqlite3
 import time
 from typing import Any, Callable, Iterable
@@ -37,8 +38,11 @@ class ProcessingConfig:
     _snapshot_json: str
 
     @classmethod
-    def capture(cls, *, provider: Provider, policy_path: Path) -> "ProcessingConfig":
-        if provider.provider_kind == "http":
+    def capture(
+        cls, *, provider: Provider, policy_path: Path | None = None,
+        policy_text: str | None = None,
+    ) -> "ProcessingConfig":
+        if provider.provider_kind in {"http", "mock"} and callable(getattr(provider, "extraction_assets", None)):
             assets = provider.extraction_assets()
         elif provider.provider_kind == "mock":
             assets = {
@@ -52,7 +56,11 @@ class ProcessingConfig:
         else:
             raise ValueError("Unsupported provider kind for configuration capture")
         data = dict(assets, provider_kind=provider.provider_kind)
-        data["policy_text"] = Path(policy_path).read_bytes().decode("utf-8")
+        if policy_text is None:
+            if policy_path is None:
+                raise ValueError("A policy path or saved policy text is required")
+            policy_text = Path(policy_path).read_bytes().decode("utf-8")
+        data["policy_text"] = policy_text
         review.ReviewPolicy.from_text(data["policy_text"])
         Draft202012Validator.check_schema(json.loads(data["schema_text"]))
         for name in ("prompt", "schema", "policy"):
@@ -244,6 +252,26 @@ class StateStore:
             "ON a.attempt_id=e.attempt_id WHERE a.document_id=? ORDER BY e.sequence", (document_id,),
         ).fetchall()
         return [dict(row) for row in rows]
+
+    def latest(self, document_id: str) -> dict[str, Any]:
+        row = self._connection.execute(
+            "SELECT a.* FROM documents d JOIN attempts a ON a.attempt_id=d.latest_attempt_id WHERE d.document_id=?",
+            (document_id,),
+        ).fetchone()
+        if row is None:
+            raise KeyError("Document has no saved attempt")
+        return json.loads(row["result_json"] if row["state"] == "completed" else row["claim_json"])
+
+    def export_snapshot(self) -> list[dict[str, Any]]:
+        """Materialize all current records in one SQLite read transaction."""
+        self._connection.execute("BEGIN")
+        try:
+            records = self.current()
+            self._connection.execute("COMMIT")
+            return records
+        except BaseException:
+            self._connection.execute("ROLLBACK")
+            raise
 
     def claim(
         self, path: Path, *, config: ProcessingConfig, operator: str,
@@ -443,6 +471,21 @@ class StateStore:
             queued=True, expected_attempt_id=row["attempt_id"],
         )
 
+    def retry_document(
+        self, document_id: str, *, operator: str, lease_seconds: float = 300,
+        config: ProcessingConfig | None = None,
+    ) -> dict[str, Any]:
+        latest = self.latest(document_id)
+        row = self._attempt(latest["attempt_id"])
+        if row["state"] == "pending" and latest.get("service_state") != "queued" and row["lease_expires_at"] > self._clock():
+            raise ClaimBusy(latest)
+        source = self._source_row(latest["attempt_id"])
+        saved = ProcessingConfig(_json(self.configuration(latest["attempt_id"]))) if config is None else config
+        return self._claim_bytes(
+            source["original_bytes"], document_id=document_id, config=saved, operator=operator,
+            lease_seconds=lease_seconds, force=True, queued=True, expected_attempt_id=latest["attempt_id"],
+        )
+
     def _check_claim(self, claim: dict[str, Any]) -> sqlite3.Row:
         row = self._attempt(claim["attempt_id"])
         if row["fencing_token"] != claim["fencing_token"] or row["lease_owner"] != claim["lease_owner"]:
@@ -462,7 +505,8 @@ class StateStore:
         snapshot = self.configuration(row["attempt_id"])
         if provider.provider_kind != snapshot["provider_kind"]:
             raise ValueError("Runtime provider kind does not match the saved configuration")
-        runtime = provider.with_snapshot(snapshot) if provider.provider_kind == "http" else provider
+        snapshot_factory = getattr(provider, "with_snapshot", None)
+        runtime = snapshot_factory(snapshot) if snapshot_factory is not None else provider
         policy = review.ReviewPolicy.from_text(snapshot["policy_text"])
         raw_extraction = None
         try:
@@ -478,6 +522,12 @@ class StateStore:
             result = asdict(review.route_extraction(extracted, source=source, policy=policy))
         except ExtractionError as exc:
             result = asdict(_failure(metadata["document_id"], metadata["source_sha256"], exc.category, runtime))
+            old_command = result["retry_command"]
+            arguments = shlex.split(old_command) + ["--db", str(self.path.resolve())]
+            if snapshot["provider_kind"] == "mock" and "mock_dir" in snapshot["model_configuration"]:
+                arguments += ["--mock-dir", snapshot["model_configuration"]["mock_dir"]]
+            result["retry_command"] = shlex.join(arguments)
+            result["error"] = result["error"].replace(old_command, result["retry_command"])
         with self._transaction() as db:
             latest = self._check_claim(claim)
             if latest["state"] == "completed":

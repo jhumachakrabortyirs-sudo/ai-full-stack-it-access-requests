@@ -156,6 +156,7 @@ def resume(
     max_workers: int = 4, lease_seconds: float = 300, heartbeat_interval: float | None = None,
     clock: Callable[[], float] = time.time, stop_event: threading.Event | None = None,
     on_result: Callable[[dict[str, Any]], None] | None = None, retry_errors: bool = False,
+    provider_kind: str | None = None,
 ) -> list[dict[str, Any]]:
     """Resume queued/expired work; opt in to retry latest completed errors.
 
@@ -167,6 +168,8 @@ def resume(
     accepted = []
     with StateStore(database, clock=clock) as store:
         for candidate in store.recovery_candidates(retry_errors=retry_errors):
+            if provider_kind is not None and store.configuration(candidate["attempt_id"])["provider_kind"] != provider_kind:
+                continue
             try:
                 accepted.append(store.recover_claim(candidate, operator=operator, lease_seconds=lease_seconds))
             except (ClaimBusy, StaleClaimError):
@@ -175,4 +178,21 @@ def resume(
         database, accepted, provider_factory=provider_factory, operator=operator, max_workers=max_workers,
         lease_seconds=lease_seconds, heartbeat_interval=interval, clock=clock,
         stop_event=stop_event, on_result=on_result,
+    )
+
+
+def retry(
+    database: Path, document_id: str, *, provider_factory: Callable[[], Provider], operator: str,
+    config: ProcessingConfig | None = None, lease_seconds: float = 300,
+    heartbeat_interval: float | None = None, clock: Callable[[], float] = time.time,
+    stop_event: threading.Event | None = None,
+) -> list[dict[str, Any]]:
+    interval = _settings(1, lease_seconds, heartbeat_interval)
+    database = Path(database)
+    with StateStore(database, clock=clock) as store:
+        claim = store.retry_document(document_id, config=config, operator=operator, lease_seconds=lease_seconds)
+    return _dispatch(
+        database, [claim], provider_factory=provider_factory, operator=operator, max_workers=1,
+        lease_seconds=lease_seconds, heartbeat_interval=interval, clock=clock,
+        stop_event=stop_event, on_result=None,
     )
