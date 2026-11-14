@@ -1,0 +1,49 @@
+read JhumaResult.md and suggest improvements so I can get a passing score. Passing score is 80/100
+
+---
+
+where are the AI session logs saved
+
+---
+
+which file in the repo has my AI session logs
+
+---
+
+where are the result from entire checkpoint list saved
+
+---
+
+create the entire-checkpoints.json file for me under /tmp/
+
+---
+
+where is the file. i dont see it
+
+---
+
+add the file to the repository under .entire/tmp/
+
+---
+
+remove it from gitignore
+
+---
+
+add the /logs to gitignore so that entire.log is not tracked
+
+---
+
+remove the entire.log from staging area but keep it in the repository
+
+---
+
+update .gitignore so that files under .entire/logs/ are not tracked
+
+---
+
+how do i get the AI conversation
+
+---
+
+how do I get the AI conversations for the project from yesterday and today  saved in a file per requirement
