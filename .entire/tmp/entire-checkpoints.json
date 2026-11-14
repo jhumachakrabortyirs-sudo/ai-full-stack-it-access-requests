@@ -1,0 +1,206 @@
+[
+  {
+    "checkpoint_id": "01M7B63YZKBEJ0RRJXNVTKE28K",
+    "session_id": "01a1d59d-4104-7503-8c41-e99df4097b32",
+    "agent": "Codex",
+    "date": "2026-11-13T19:28:28Z",
+    "message": "Validation: each spec line met or not met, with evidence",
+    "is_logs_only": true,
+    "session_count": 1,
+    "session_ids": [
+      "01a1d59d-4104-7503-8c41-e99df4097b32"
+    ]
+  },
+  {
+    "checkpoint_id": "01M7B4AXWQBRCBVGZM77NVSSE0",
+    "session_id": "01a1d59d-4104-7503-8c41-e99df4097b32",
+    "agent": "Codex",
+    "date": "2026-11-13T18:57:19Z",
+    "message": "Step 8: Build independent accuracy comparisons and handover deliverables",
+    "is_logs_only": true,
+    "session_count": 1,
+    "session_ids": [
+      "01a1d59d-4104-7503-8c41-e99df4097b32"
+    ]
+  },
+  {
+    "checkpoint_id": "01M7B3EN040BAQC2JTTWDV6HPN",
+    "session_id": "01a1d59d-4104-7503-8c41-e99df4097b32",
+    "agent": "Codex",
+    "date": "2026-11-13T18:41:52Z",
+    "message": "Test first: Build independent accuracy comparisons and handover deliverables",
+    "is_logs_only": true,
+    "session_count": 1,
+    "session_ids": [
+      "01a1d59d-4104-7503-8c41-e99df4097b32"
+    ]
+  },
+  {
+    "checkpoint_id": "01M7B2K7BDX9FWJ11S41036R7M",
+    "session_id": "01a1d59d-4104-7503-8c41-e99df4097b32",
+    "agent": "Codex",
+    "date": "2026-11-13T18:26:53Z",
+    "message": "Step 7: Expose the operator CLI and consistent current exports",
+    "is_logs_only": true,
+    "session_count": 1,
+    "session_ids": [
+      "01a1d59d-4104-7503-8c41-e99df4097b32"
+    ]
+  },
+  {
+    "checkpoint_id": "01M7B1NW9NDH8X5Q9Q1QZ5RDR5",
+    "session_id": "01a1d59d-4104-7503-8c41-e99df4097b32",
+    "agent": "Codex",
+    "date": "2026-11-13T18:10:52Z",
+    "message": "Test first: Expose the operator CLI and consistent current exports",
+    "is_logs_only": true,
+    "session_count": 1,
+    "session_ids": [
+      "01a1d59d-4104-7503-8c41-e99df4097b32"
+    ]
+  },
+  {
+    "checkpoint_id": "01M7B0TAB473QDK107DFGKWYS7",
+    "session_id": "01a1d59d-4104-7503-8c41-e99df4097b32",
+    "agent": "Codex",
+    "date": "2026-11-13T17:55:49Z",
+    "message": "Step 6: Coordinate operators and resume interrupted intake",
+    "is_logs_only": true,
+    "session_count": 1,
+    "session_ids": [
+      "01a1d59d-4104-7503-8c41-e99df4097b32"
+    ]
+  },
+  {
+    "checkpoint_id": "01M7B08GN29M07GHZYBCGE432V",
+    "session_id": "01a1d59d-4104-7503-8c41-e99df4097b32",
+    "agent": "Codex",
+    "date": "2026-11-13T17:46:05Z",
+    "message": "Test first: Coordinate operators and resume interrupted intake (claim and revision guards already pass)",
+    "is_logs_only": true,
+    "session_count": 1,
+    "session_ids": [
+      "01a1d59d-4104-7503-8c41-e99df4097b32"
+    ]
+  },
+  {
+    "checkpoint_id": "01M7AZH9SASEHMYYSDYYTRQ5YM",
+    "session_id": "01a1d59d-4104-7503-8c41-e99df4097b32",
+    "agent": "Codex",
+    "date": "2026-11-13T17:33:25Z",
+    "message": "Step 5: Persist independent attempts, reuse, revisions, history, and refreshes",
+    "is_logs_only": true,
+    "session_count": 1,
+    "session_ids": [
+      "01a1d59d-4104-7503-8c41-e99df4097b32"
+    ]
+  },
+  {
+    "checkpoint_id": "01M7AZ2Y0TDRKPD2NZW8X5P21C",
+    "session_id": "01a1d59d-4104-7503-8c41-e99df4097b32",
+    "agent": "Codex",
+    "date": "2026-11-13T17:25:34Z",
+    "message": "Test first: Persist independent attempts, reuse, revisions, history, and refreshes",
+    "is_logs_only": true,
+    "session_count": 1,
+    "session_ids": [
+      "01a1d59d-4104-7503-8c41-e99df4097b32"
+    ]
+  },
+  {
+    "checkpoint_id": "01M7AYH0TE28DH41TBPJN1CSDD",
+    "session_id": "01a1d59d-4104-7503-8c41-e99df4097b32",
+    "agent": "Codex",
+    "date": "2026-11-13T17:15:47Z",
+    "message": "Step 4: Implement the configurable real-provider adapter and explicit failures",
+    "is_logs_only": true,
+    "session_count": 1,
+    "session_ids": [
+      "01a1d59d-4104-7503-8c41-e99df4097b32"
+    ]
+  },
+  {
+    "checkpoint_id": "01M7AY4SDKKXGVP9FKCM2GPK9Y",
+    "session_id": "01a1d59d-4104-7503-8c41-e99df4097b32",
+    "agent": "Codex",
+    "date": "2026-11-13T17:09:06Z",
+    "message": "Test first: Implement the configurable real-provider adapter and explicit failures",
+    "is_logs_only": true,
+    "session_count": 1,
+    "session_ids": [
+      "01a1d59d-4104-7503-8c41-e99df4097b32"
+    ]
+  },
+  {
+    "checkpoint_id": "01M7AXSXY55YK29MCXJE6K8C92",
+    "session_id": "01a1d59d-4104-7503-8c41-e99df4097b32",
+    "agent": "Codex",
+    "date": "2026-11-13T17:03:10Z",
+    "message": "Step 3: Implement source-grounded extraction instructions and ordered review routing",
+    "is_logs_only": true,
+    "session_count": 1,
+    "session_ids": [
+      "01a1d59d-4104-7503-8c41-e99df4097b32"
+    ]
+  },
+  {
+    "checkpoint_id": "01M7AXJBY0W7PWBMQSKEB47ZQE",
+    "session_id": "01a1d59d-4104-7503-8c41-e99df4097b32",
+    "agent": "Codex",
+    "date": "2026-11-13T16:59:02Z",
+    "message": "Test first: Implement source-grounded extraction instructions and ordered review routing",
+    "is_logs_only": true,
+    "session_count": 1,
+    "session_ids": [
+      "01a1d59d-4104-7503-8c41-e99df4097b32"
+    ]
+  },
+  {
+    "checkpoint_id": "01M7AX5H25CT83R0B4HK3RY2WP",
+    "session_id": "01a1d59d-4104-7503-8c41-e99df4097b32",
+    "agent": "Codex",
+    "date": "2026-11-13T16:52:02Z",
+    "message": "Step 2: Decode exports and validate extraction envelopes and schema",
+    "is_logs_only": true,
+    "session_count": 1,
+    "session_ids": [
+      "01a1d59d-4104-7503-8c41-e99df4097b32"
+    ]
+  },
+  {
+    "checkpoint_id": "01M7AWSS28GVE3V08N0WYD7C2C",
+    "session_id": "01a1d59d-4104-7503-8c41-e99df4097b32",
+    "agent": "Codex",
+    "date": "2026-11-13T16:45:37Z",
+    "message": "Test first: Decode exports and validate extraction envelopes and schema",
+    "is_logs_only": true,
+    "session_count": 1,
+    "session_ids": [
+      "01a1d59d-4104-7503-8c41-e99df4097b32"
+    ]
+  },
+  {
+    "checkpoint_id": "01M7AWBS2D8PXAKZVVPVB0DCS0",
+    "session_id": "01a1d59d-4104-7503-8c41-e99df4097b32",
+    "agent": "Codex",
+    "date": "2026-11-13T16:37:58Z",
+    "message": "Step 1: Build the mock provider first",
+    "is_logs_only": true,
+    "session_count": 1,
+    "session_ids": [
+      "01a1d59d-4104-7503-8c41-e99df4097b32"
+    ]
+  },
+  {
+    "checkpoint_id": "01M7AVK4SX9YQCJVM8PS7WYNFG",
+    "session_id": "01a1d59d-4104-7503-8c41-e99df4097b32",
+    "agent": "Codex",
+    "date": "2026-11-13T16:24:31Z",
+    "message": "Test first: Build the mock provider first",
+    "is_logs_only": true,
+    "session_count": 1,
+    "session_ids": [
+      "01a1d59d-4104-7503-8c41-e99df4097b32"
+    ]
+  }
+]
