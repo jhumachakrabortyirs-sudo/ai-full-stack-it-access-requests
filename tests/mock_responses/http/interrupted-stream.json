@@ -1,0 +1,8 @@
+{
+  "steps": [
+    {
+      "exception": "incomplete-read",
+      "partial": "{\"choices\": ["
+    }
+  ]
+}

@@ -1,0 +1,674 @@
+test_T02_all_20_exports_keep_filename_hash_and_only_decoded_message (test_extraction.ExtractionContract.test_T02_all_20_exports_keep_filename_hash_and_only_decoded_message) ... ok
+test_T02_export_metadata_cannot_supply_request_facts (test_extraction.ExtractionContract.test_T02_export_metadata_cannot_supply_request_facts) ... ok
+test_T02_fresh_synthetic_export_accepts_exactly_200_words (test_extraction.ExtractionContract.test_T02_fresh_synthetic_export_accepts_exactly_200_words) ... ok
+test_T02_original_bytes_survive_decoding_and_reformat_changes_hash (test_extraction.ExtractionContract.test_T02_original_bytes_survive_decoding_and_reformat_changes_hash) ... ok
+test_T03_accepts_declared_schema_shapes_and_minimal_withdrawal (test_extraction.ExtractionContract.test_T03_accepts_declared_schema_shapes_and_minimal_withdrawal) ... ok
+test_T03_bare_extraction_object_is_not_a_completed_envelope (test_extraction.ExtractionContract.test_T03_bare_extraction_object_is_not_a_completed_envelope) ... ok
+test_T03_invalid_responses_never_return_a_successful_extraction (test_extraction.ExtractionContract.test_T03_invalid_responses_never_return_a_successful_extraction) ... ok
+test_T26_http_transient_failures_have_separate_bounded_retry_budgets (test_http_provider.HttpProviderContract.test_T26_http_transient_failures_have_separate_bounded_retry_budgets) ... FAIL
+test_T26_mock_failure_does_not_stop_the_next_message (test_http_provider.HttpProviderContract.test_T26_mock_failure_does_not_stop_the_next_message) ... FAIL
+test_T26_retry_after_is_capped_and_recovery_keeps_valid_facts (test_http_provider.HttpProviderContract.test_T26_retry_after_is_capped_and_recovery_keeps_valid_facts) ... FAIL
+test_T27_refusal_is_explicit_and_is_not_retried_or_routed (test_http_provider.HttpProviderContract.test_T27_refusal_is_explicit_and_is_not_retried_or_routed) ... FAIL
+test_T28_interrupted_stream_and_completion_markers_never_publish_partial_facts (test_http_provider.HttpProviderContract.test_T28_interrupted_stream_and_completion_markers_never_publish_partial_facts) ... 
+  test_T28_interrupted_stream_and_completion_markers_never_publish_partial_facts (test_http_provider.HttpProviderContract.test_T28_interrupted_stream_and_completion_markers_never_publish_partial_facts) (scenario='interrupted-complete-looking') ... FAIL
+  test_T28_interrupted_stream_and_completion_markers_never_publish_partial_facts (test_http_provider.HttpProviderContract.test_T28_interrupted_stream_and_completion_markers_never_publish_partial_facts) (scenario='interrupted-content') ... FAIL
+  test_T28_interrupted_stream_and_completion_markers_never_publish_partial_facts (test_http_provider.HttpProviderContract.test_T28_interrupted_stream_and_completion_markers_never_publish_partial_facts) (scenario='interrupted-stream') ... FAIL
+test_T29_malformed_schema_and_envelope_failures_are_actionable (test_http_provider.HttpProviderContract.test_T29_malformed_schema_and_envelope_failures_are_actionable) ... 
+  test_T29_malformed_schema_and_envelope_failures_are_actionable (test_http_provider.HttpProviderContract.test_T29_malformed_schema_and_envelope_failures_are_actionable) (scenario='malformed-content') ... FAIL
+  test_T29_malformed_schema_and_envelope_failures_are_actionable (test_http_provider.HttpProviderContract.test_T29_malformed_schema_and_envelope_failures_are_actionable) (scenario='malformed-http-json') ... FAIL
+  test_T29_malformed_schema_and_envelope_failures_are_actionable (test_http_provider.HttpProviderContract.test_T29_malformed_schema_and_envelope_failures_are_actionable) (scenario='schema-extra-property') ... FAIL
+  test_T29_malformed_schema_and_envelope_failures_are_actionable (test_http_provider.HttpProviderContract.test_T29_malformed_schema_and_envelope_failures_are_actionable) (scenario='schema-nonobject') ... FAIL
+  test_T29_malformed_schema_and_envelope_failures_are_actionable (test_http_provider.HttpProviderContract.test_T29_malformed_schema_and_envelope_failures_are_actionable) (scenario='invalid-envelope') ... FAIL
+  test_T29_malformed_schema_and_envelope_failures_are_actionable (test_http_provider.HttpProviderContract.test_T29_malformed_schema_and_envelope_failures_are_actionable) (scenario='fabricated-quote') ... FAIL
+  test_T29_malformed_schema_and_envelope_failures_are_actionable (test_http_provider.HttpProviderContract.test_T29_malformed_schema_and_envelope_failures_are_actionable) (scenario='provider-error-envelope') ... FAIL
+test_T30_actual_request_and_redacted_evidence_share_the_request_builder (test_http_provider.HttpProviderContract.test_T30_actual_request_and_redacted_evidence_share_the_request_builder) ... FAIL
+test_T30_missing_credential_is_actionable_before_transport (test_http_provider.HttpProviderContract.test_T30_missing_credential_is_actionable_before_transport) ... 
+  test_T30_missing_credential_is_actionable_before_transport (test_http_provider.HttpProviderContract.test_T30_missing_credential_is_actionable_before_transport) (value=None) ... FAIL
+  test_T30_missing_credential_is_actionable_before_transport (test_http_provider.HttpProviderContract.test_T30_missing_credential_is_actionable_before_transport) (value='') ... FAIL
+  test_T30_missing_credential_is_actionable_before_transport (test_http_provider.HttpProviderContract.test_T30_missing_credential_is_actionable_before_transport) (value='   ') ... FAIL
+test_T30_settings_reject_unbounded_attempts_and_request_control_overrides (test_http_provider.HttpProviderContract.test_T30_settings_reject_unbounded_attempts_and_request_control_overrides) ... FAIL
+test_T30_source_override_cannot_change_request_controls (test_http_provider.HttpProviderContract.test_T30_source_override_cannot_change_request_controls) ... FAIL
+test_T30_upstream_error_details_are_redacted_and_client_errors_are_not_retried (test_http_provider.HttpProviderContract.test_T30_upstream_error_details_are_redacted_and_client_errors_are_not_retried) ... 
+  test_T30_upstream_error_details_are_redacted_and_client_errors_are_not_retried (test_http_provider.HttpProviderContract.test_T30_upstream_error_details_are_redacted_and_client_errors_are_not_retried) (scenario='http-client-error') ... FAIL
+  test_T30_upstream_error_details_are_redacted_and_client_errors_are_not_retried (test_http_provider.HttpProviderContract.test_T30_upstream_error_details_are_redacted_and_client_errors_are_not_retried) (scenario='http-auth-error') ... FAIL
+test_T01_scripted_calls_and_independent_release_without_key_or_network (test_mock_provider.MockProviderContract.test_T01_scripted_calls_and_independent_release_without_key_or_network) ... ok
+test_T04_complete_request_stays_in_human_review (test_review.ReviewContract.test_T04_complete_request_stays_in_human_review) ... ok
+test_T04_prompt_covers_source_and_extraction_rules (test_review.ReviewContract.test_T04_prompt_covers_source_and_extraction_rules) ... ok
+test_T05_production_write_requires_security_review (test_review.ReviewContract.test_T05_production_write_requires_security_review) ... ok
+test_T06_missing_access_facts_are_null_with_individual_issues (test_review.ReviewContract.test_T06_missing_access_facts_are_null_with_individual_issues) ... ok
+test_T07_environment_conflict_precedes_risk_routing (test_review.ReviewContract.test_T07_environment_conflict_precedes_risk_routing) ... ok
+test_T08_withdrawal_precedes_absent_access_fact_clarification (test_review.ReviewContract.test_T08_withdrawal_precedes_absent_access_fact_clarification) ... ok
+test_T09_embedded_instructions_remain_evidence_and_never_approve (test_review.ReviewContract.test_T09_embedded_instructions_remain_evidence_and_never_approve) ... ok
+test_T09_untrusted_message_cannot_change_trusted_prompt (test_review.ReviewContract.test_T09_untrusted_message_cannot_change_trusted_prompt) ... ok
+test_T10_change_uses_requested_new_write_permission (test_review.ReviewContract.test_T10_change_uses_requested_new_write_permission) ... ok
+test_T11_explicit_environment_correction_resolves_prior_value (test_review.ReviewContract.test_T11_explicit_environment_correction_resolves_prior_value) ... ok
+test_T12_missing_manager_requires_clarification (test_review.ReviewContract.test_T12_missing_manager_requires_clarification) ... ok
+test_T13_missing_end_date_precedes_production_risk (test_review.ReviewContract.test_T13_missing_end_date_precedes_production_risk) ... ok
+test_T14_relative_dates_remain_unresolved (test_review.ReviewContract.test_T14_relative_dates_remain_unresolved) ... ok
+test_T15_staging_admin_requires_security_review (test_review.ReviewContract.test_T15_staging_admin_requires_security_review) ... ok
+test_T16_production_read_requires_security_review (test_review.ReviewContract.test_T16_production_read_requires_security_review) ... ok
+test_T17_reversed_range_keeps_dates_and_adds_clarification_issue (test_review.ReviewContract.test_T17_reversed_range_keeps_dates_and_adds_clarification_issue) ... ok
+test_T18_explicit_date_correction_keeps_original_and_corrected_evidence (test_review.ReviewContract.test_T18_explicit_date_correction_keeps_original_and_corrected_evidence) ... ok
+test_T19_identifier_mismatch_preserves_stated_id_and_filename (test_review.ReviewContract.test_T19_identifier_mismatch_preserves_stated_id_and_filename) ... ok
+test_T20_form_link_inquiry_has_no_invented_access_purpose (test_review.ReviewContract.test_T20_form_link_inquiry_has_no_invented_access_purpose) ... ok
+test_T21_longer_message_uses_only_explicit_facts (test_review.ReviewContract.test_T21_longer_message_uses_only_explicit_facts) ... ok
+test_T22_production_change_uses_requested_read_not_previous_write (test_review.ReviewContract.test_T22_production_change_uses_requested_read_not_previous_write) ... ok
+test_T23_conflicting_manager_stays_null_with_both_alternatives (test_review.ReviewContract.test_T23_conflicting_manager_stays_null_with_both_alternatives) ... ok
+test_T24_invalid_extraction_is_rejected_before_policy_routing (test_review.ReviewContract.test_T24_invalid_extraction_is_rejected_before_policy_routing) ... ok
+test_T24_ordered_precedence_and_required_field_matrix (test_review.ReviewContract.test_T24_ordered_precedence_and_required_field_matrix) ... ok
+test_T25_fresh_paraphrase_routes_using_independent_expected_facts (test_review.ReviewContract.test_T25_fresh_paraphrase_routes_using_independent_expected_facts) ... ok
+test_a_mock_reply_is_read_with_no_key_and_no_network (test_starter.MockResponse.test_a_mock_reply_is_read_with_no_key_and_no_network) ... ok
+test_each_request_export_has_message_text_and_a_hash (test_starter.SuppliedFiles.test_each_request_export_has_message_text_and_a_hash) ... ok
+test_the_schema_names_the_fields_it_requires (test_starter.SuppliedFiles.test_the_schema_names_the_fields_it_requires) ... ok
+
+======================================================================
+FAIL: test_T26_http_transient_failures_have_separate_bounded_retry_budgets (test_http_provider.HttpProviderContract.test_T26_http_transient_failures_have_separate_bounded_retry_budgets)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 90, in api
+    return importlib.import_module(name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'intake.processing'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 161, in test_T26_http_transient_failures_have_separate_bounded_retry_budgets
+    processing = self.api("intake.processing")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 92, in api
+    self.fail(f"Step 4 behavior is absent: {exc}")
+AssertionError: Step 4 behavior is absent: No module named 'intake.processing'
+
+======================================================================
+FAIL: test_T26_mock_failure_does_not_stop_the_next_message (test_http_provider.HttpProviderContract.test_T26_mock_failure_does_not_stop_the_next_message)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 90, in api
+    return importlib.import_module(name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'intake.processing'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 147, in test_T26_mock_failure_does_not_stop_the_next_message
+    processing = self.api("intake.processing")
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 92, in api
+    self.fail(f"Step 4 behavior is absent: {exc}")
+AssertionError: Step 4 behavior is absent: No module named 'intake.processing'
+
+======================================================================
+FAIL: test_T26_retry_after_is_capped_and_recovery_keeps_valid_facts (test_http_provider.HttpProviderContract.test_T26_retry_after_is_capped_and_recovery_keeps_valid_facts)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 90, in api
+    return importlib.import_module(name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'intake.http_provider'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 185, in test_T26_retry_after_is_capped_and_recovery_keeps_valid_facts
+    provider, transport, sleeps, clock, _ = self.make_provider("transient-recovery")
+                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 95, in make_provider
+    api = self.api()
+          ^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 92, in api
+    self.fail(f"Step 4 behavior is absent: {exc}")
+AssertionError: Step 4 behavior is absent: No module named 'intake.http_provider'
+
+======================================================================
+FAIL: test_T27_refusal_is_explicit_and_is_not_retried_or_routed (test_http_provider.HttpProviderContract.test_T27_refusal_is_explicit_and_is_not_retried_or_routed)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 90, in api
+    return importlib.import_module(name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'intake.http_provider'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 192, in test_T27_refusal_is_explicit_and_is_not_retried_or_routed
+    provider, transport, sleeps, _, _ = self.make_provider("refusal")
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 95, in make_provider
+    api = self.api()
+          ^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 92, in api
+    self.fail(f"Step 4 behavior is absent: {exc}")
+AssertionError: Step 4 behavior is absent: No module named 'intake.http_provider'
+
+======================================================================
+FAIL: test_T28_interrupted_stream_and_completion_markers_never_publish_partial_facts (test_http_provider.HttpProviderContract.test_T28_interrupted_stream_and_completion_markers_never_publish_partial_facts) (scenario='interrupted-complete-looking')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 90, in api
+    return importlib.import_module(name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'intake.http_provider'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 203, in test_T28_interrupted_stream_and_completion_markers_never_publish_partial_facts
+    provider, transport, sleeps, _, _ = self.make_provider(scenario)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 95, in make_provider
+    api = self.api()
+          ^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 92, in api
+    self.fail(f"Step 4 behavior is absent: {exc}")
+AssertionError: Step 4 behavior is absent: No module named 'intake.http_provider'
+
+======================================================================
+FAIL: test_T28_interrupted_stream_and_completion_markers_never_publish_partial_facts (test_http_provider.HttpProviderContract.test_T28_interrupted_stream_and_completion_markers_never_publish_partial_facts) (scenario='interrupted-content')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 90, in api
+    return importlib.import_module(name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'intake.http_provider'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 203, in test_T28_interrupted_stream_and_completion_markers_never_publish_partial_facts
+    provider, transport, sleeps, _, _ = self.make_provider(scenario)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 95, in make_provider
+    api = self.api()
+          ^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 92, in api
+    self.fail(f"Step 4 behavior is absent: {exc}")
+AssertionError: Step 4 behavior is absent: No module named 'intake.http_provider'
+
+======================================================================
+FAIL: test_T28_interrupted_stream_and_completion_markers_never_publish_partial_facts (test_http_provider.HttpProviderContract.test_T28_interrupted_stream_and_completion_markers_never_publish_partial_facts) (scenario='interrupted-stream')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 90, in api
+    return importlib.import_module(name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'intake.http_provider'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 203, in test_T28_interrupted_stream_and_completion_markers_never_publish_partial_facts
+    provider, transport, sleeps, _, _ = self.make_provider(scenario)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 95, in make_provider
+    api = self.api()
+          ^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 92, in api
+    self.fail(f"Step 4 behavior is absent: {exc}")
+AssertionError: Step 4 behavior is absent: No module named 'intake.http_provider'
+
+======================================================================
+FAIL: test_T29_malformed_schema_and_envelope_failures_are_actionable (test_http_provider.HttpProviderContract.test_T29_malformed_schema_and_envelope_failures_are_actionable) (scenario='malformed-content')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 90, in api
+    return importlib.import_module(name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'intake.http_provider'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 219, in test_T29_malformed_schema_and_envelope_failures_are_actionable
+    provider, transport, sleeps, _, _ = self.make_provider(scenario)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 95, in make_provider
+    api = self.api()
+          ^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 92, in api
+    self.fail(f"Step 4 behavior is absent: {exc}")
+AssertionError: Step 4 behavior is absent: No module named 'intake.http_provider'
+
+======================================================================
+FAIL: test_T29_malformed_schema_and_envelope_failures_are_actionable (test_http_provider.HttpProviderContract.test_T29_malformed_schema_and_envelope_failures_are_actionable) (scenario='malformed-http-json')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 90, in api
+    return importlib.import_module(name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'intake.http_provider'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 219, in test_T29_malformed_schema_and_envelope_failures_are_actionable
+    provider, transport, sleeps, _, _ = self.make_provider(scenario)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 95, in make_provider
+    api = self.api()
+          ^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 92, in api
+    self.fail(f"Step 4 behavior is absent: {exc}")
+AssertionError: Step 4 behavior is absent: No module named 'intake.http_provider'
+
+======================================================================
+FAIL: test_T29_malformed_schema_and_envelope_failures_are_actionable (test_http_provider.HttpProviderContract.test_T29_malformed_schema_and_envelope_failures_are_actionable) (scenario='schema-extra-property')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 90, in api
+    return importlib.import_module(name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'intake.http_provider'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 219, in test_T29_malformed_schema_and_envelope_failures_are_actionable
+    provider, transport, sleeps, _, _ = self.make_provider(scenario)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 95, in make_provider
+    api = self.api()
+          ^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 92, in api
+    self.fail(f"Step 4 behavior is absent: {exc}")
+AssertionError: Step 4 behavior is absent: No module named 'intake.http_provider'
+
+======================================================================
+FAIL: test_T29_malformed_schema_and_envelope_failures_are_actionable (test_http_provider.HttpProviderContract.test_T29_malformed_schema_and_envelope_failures_are_actionable) (scenario='schema-nonobject')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 90, in api
+    return importlib.import_module(name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'intake.http_provider'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 219, in test_T29_malformed_schema_and_envelope_failures_are_actionable
+    provider, transport, sleeps, _, _ = self.make_provider(scenario)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 95, in make_provider
+    api = self.api()
+          ^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 92, in api
+    self.fail(f"Step 4 behavior is absent: {exc}")
+AssertionError: Step 4 behavior is absent: No module named 'intake.http_provider'
+
+======================================================================
+FAIL: test_T29_malformed_schema_and_envelope_failures_are_actionable (test_http_provider.HttpProviderContract.test_T29_malformed_schema_and_envelope_failures_are_actionable) (scenario='invalid-envelope')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 90, in api
+    return importlib.import_module(name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'intake.http_provider'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 219, in test_T29_malformed_schema_and_envelope_failures_are_actionable
+    provider, transport, sleeps, _, _ = self.make_provider(scenario)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 95, in make_provider
+    api = self.api()
+          ^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 92, in api
+    self.fail(f"Step 4 behavior is absent: {exc}")
+AssertionError: Step 4 behavior is absent: No module named 'intake.http_provider'
+
+======================================================================
+FAIL: test_T29_malformed_schema_and_envelope_failures_are_actionable (test_http_provider.HttpProviderContract.test_T29_malformed_schema_and_envelope_failures_are_actionable) (scenario='fabricated-quote')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 90, in api
+    return importlib.import_module(name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'intake.http_provider'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 219, in test_T29_malformed_schema_and_envelope_failures_are_actionable
+    provider, transport, sleeps, _, _ = self.make_provider(scenario)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 95, in make_provider
+    api = self.api()
+          ^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 92, in api
+    self.fail(f"Step 4 behavior is absent: {exc}")
+AssertionError: Step 4 behavior is absent: No module named 'intake.http_provider'
+
+======================================================================
+FAIL: test_T29_malformed_schema_and_envelope_failures_are_actionable (test_http_provider.HttpProviderContract.test_T29_malformed_schema_and_envelope_failures_are_actionable) (scenario='provider-error-envelope')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 90, in api
+    return importlib.import_module(name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'intake.http_provider'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 219, in test_T29_malformed_schema_and_envelope_failures_are_actionable
+    provider, transport, sleeps, _, _ = self.make_provider(scenario)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 95, in make_provider
+    api = self.api()
+          ^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 92, in api
+    self.fail(f"Step 4 behavior is absent: {exc}")
+AssertionError: Step 4 behavior is absent: No module named 'intake.http_provider'
+
+======================================================================
+FAIL: test_T30_actual_request_and_redacted_evidence_share_the_request_builder (test_http_provider.HttpProviderContract.test_T30_actual_request_and_redacted_evidence_share_the_request_builder)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 90, in api
+    return importlib.import_module(name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'intake.http_provider'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 225, in test_T30_actual_request_and_redacted_evidence_share_the_request_builder
+    provider, transport, sleeps, _, credentials = self.make_provider("success")
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 95, in make_provider
+    api = self.api()
+          ^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 92, in api
+    self.fail(f"Step 4 behavior is absent: {exc}")
+AssertionError: Step 4 behavior is absent: No module named 'intake.http_provider'
+
+======================================================================
+FAIL: test_T30_missing_credential_is_actionable_before_transport (test_http_provider.HttpProviderContract.test_T30_missing_credential_is_actionable_before_transport) (value=None)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 90, in api
+    return importlib.import_module(name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'intake.http_provider'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 303, in test_T30_missing_credential_is_actionable_before_transport
+    provider, transport, sleeps, _, credentials = self.make_provider("success")
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 95, in make_provider
+    api = self.api()
+          ^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 92, in api
+    self.fail(f"Step 4 behavior is absent: {exc}")
+AssertionError: Step 4 behavior is absent: No module named 'intake.http_provider'
+
+======================================================================
+FAIL: test_T30_missing_credential_is_actionable_before_transport (test_http_provider.HttpProviderContract.test_T30_missing_credential_is_actionable_before_transport) (value='')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 90, in api
+    return importlib.import_module(name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'intake.http_provider'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 303, in test_T30_missing_credential_is_actionable_before_transport
+    provider, transport, sleeps, _, credentials = self.make_provider("success")
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 95, in make_provider
+    api = self.api()
+          ^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 92, in api
+    self.fail(f"Step 4 behavior is absent: {exc}")
+AssertionError: Step 4 behavior is absent: No module named 'intake.http_provider'
+
+======================================================================
+FAIL: test_T30_missing_credential_is_actionable_before_transport (test_http_provider.HttpProviderContract.test_T30_missing_credential_is_actionable_before_transport) (value='   ')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 90, in api
+    return importlib.import_module(name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'intake.http_provider'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 303, in test_T30_missing_credential_is_actionable_before_transport
+    provider, transport, sleeps, _, credentials = self.make_provider("success")
+                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 95, in make_provider
+    api = self.api()
+          ^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 92, in api
+    self.fail(f"Step 4 behavior is absent: {exc}")
+AssertionError: Step 4 behavior is absent: No module named 'intake.http_provider'
+
+======================================================================
+FAIL: test_T30_settings_reject_unbounded_attempts_and_request_control_overrides (test_http_provider.HttpProviderContract.test_T30_settings_reject_unbounded_attempts_and_request_control_overrides)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 90, in api
+    return importlib.import_module(name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'intake.http_provider'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 311, in test_T30_settings_reject_unbounded_attempts_and_request_control_overrides
+    api = self.api()
+          ^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 92, in api
+    self.fail(f"Step 4 behavior is absent: {exc}")
+AssertionError: Step 4 behavior is absent: No module named 'intake.http_provider'
+
+======================================================================
+FAIL: test_T30_source_override_cannot_change_request_controls (test_http_provider.HttpProviderContract.test_T30_source_override_cannot_change_request_controls)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 90, in api
+    return importlib.import_module(name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'intake.http_provider'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 273, in test_T30_source_override_cannot_change_request_controls
+    provider, transport, _, _, _ = self.make_provider("success-override")
+                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 95, in make_provider
+    api = self.api()
+          ^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 92, in api
+    self.fail(f"Step 4 behavior is absent: {exc}")
+AssertionError: Step 4 behavior is absent: No module named 'intake.http_provider'
+
+======================================================================
+FAIL: test_T30_upstream_error_details_are_redacted_and_client_errors_are_not_retried (test_http_provider.HttpProviderContract.test_T30_upstream_error_details_are_redacted_and_client_errors_are_not_retried) (scenario='http-client-error')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 90, in api
+    return importlib.import_module(name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'intake.http_provider'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 288, in test_T30_upstream_error_details_are_redacted_and_client_errors_are_not_retried
+    provider, transport, sleeps, _, _ = self.make_provider(scenario)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 95, in make_provider
+    api = self.api()
+          ^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 92, in api
+    self.fail(f"Step 4 behavior is absent: {exc}")
+AssertionError: Step 4 behavior is absent: No module named 'intake.http_provider'
+
+======================================================================
+FAIL: test_T30_upstream_error_details_are_redacted_and_client_errors_are_not_retried (test_http_provider.HttpProviderContract.test_T30_upstream_error_details_are_redacted_and_client_errors_are_not_retried) (scenario='http-auth-error')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 90, in api
+    return importlib.import_module(name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1324, in _find_and_load_unlocked
+ModuleNotFoundError: No module named 'intake.http_provider'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 288, in test_T30_upstream_error_details_are_redacted_and_client_errors_are_not_retried
+    provider, transport, sleeps, _, _ = self.make_provider(scenario)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 95, in make_provider
+    api = self.api()
+          ^^^^^^^^^^
+  File "/home/user/Project/ai-full-stack-it-access-requests/tests/test_http_provider.py", line 92, in api
+    self.fail(f"Step 4 behavior is absent: {exc}")
+AssertionError: Step 4 behavior is absent: No module named 'intake.http_provider'
+
+----------------------------------------------------------------------
+Ran 47 tests in 0.171s
+
+FAILED (failures=22)

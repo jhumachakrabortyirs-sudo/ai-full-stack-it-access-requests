@@ -1,0 +1,13 @@
+{
+  "steps": [
+    {
+      "status": 400,
+      "headers": {},
+      "body_json": {
+        "error": {
+          "message": "Fixture upstream error containing fixture-secret-do-not-log"
+        }
+      }
+    }
+  ]
+}

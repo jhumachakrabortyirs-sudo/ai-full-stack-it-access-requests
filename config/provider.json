@@ -1,0 +1,14 @@
+{
+  "base_url": "https://api.openai.com/v1",
+  "provider": "openai",
+  "model": "gpt-4o-mini-2024-07-18",
+  "timeout": 30.0,
+  "max_attempts": 3,
+  "retry_base_delay": 1.0,
+  "retry_max_delay": 30.0,
+  "generation": {
+    "temperature": 0,
+    "top_p": 1,
+    "max_tokens": 2048
+  }
+}

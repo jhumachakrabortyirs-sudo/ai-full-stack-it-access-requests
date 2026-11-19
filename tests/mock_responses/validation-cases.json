@@ -1,0 +1,1302 @@
+{
+  "invalid": [
+    {
+      "fixture": "invalid/root-array.json",
+      "category": "schema",
+      "detail": ""
+    },
+    {
+      "fixture": "invalid/root-string.json",
+      "category": "schema",
+      "detail": ""
+    },
+    {
+      "fixture": "invalid/root-number.json",
+      "category": "schema",
+      "detail": ""
+    },
+    {
+      "fixture": "invalid/root-boolean.json",
+      "category": "schema",
+      "detail": ""
+    },
+    {
+      "fixture": "invalid/root-null.json",
+      "category": "schema",
+      "detail": ""
+    },
+    {
+      "fixture": "invalid/requester-number.json",
+      "category": "schema",
+      "detail": "requester"
+    },
+    {
+      "fixture": "invalid/requester-boolean.json",
+      "category": "schema",
+      "detail": "requester"
+    },
+    {
+      "fixture": "invalid/requester-array.json",
+      "category": "schema",
+      "detail": "requester"
+    },
+    {
+      "fixture": "invalid/requester-object.json",
+      "category": "schema",
+      "detail": "requester"
+    },
+    {
+      "fixture": "invalid/missing-requester.json",
+      "category": "schema",
+      "detail": "requester"
+    },
+    {
+      "fixture": "invalid/team-number.json",
+      "category": "schema",
+      "detail": "team"
+    },
+    {
+      "fixture": "invalid/team-boolean.json",
+      "category": "schema",
+      "detail": "team"
+    },
+    {
+      "fixture": "invalid/team-array.json",
+      "category": "schema",
+      "detail": "team"
+    },
+    {
+      "fixture": "invalid/team-object.json",
+      "category": "schema",
+      "detail": "team"
+    },
+    {
+      "fixture": "invalid/missing-team.json",
+      "category": "schema",
+      "detail": "team"
+    },
+    {
+      "fixture": "invalid/kind-number.json",
+      "category": "schema",
+      "detail": "kind"
+    },
+    {
+      "fixture": "invalid/kind-boolean.json",
+      "category": "schema",
+      "detail": "kind"
+    },
+    {
+      "fixture": "invalid/kind-array.json",
+      "category": "schema",
+      "detail": "kind"
+    },
+    {
+      "fixture": "invalid/kind-object.json",
+      "category": "schema",
+      "detail": "kind"
+    },
+    {
+      "fixture": "invalid/missing-kind.json",
+      "category": "schema",
+      "detail": "kind"
+    },
+    {
+      "fixture": "invalid/system-number.json",
+      "category": "schema",
+      "detail": "system"
+    },
+    {
+      "fixture": "invalid/system-boolean.json",
+      "category": "schema",
+      "detail": "system"
+    },
+    {
+      "fixture": "invalid/system-array.json",
+      "category": "schema",
+      "detail": "system"
+    },
+    {
+      "fixture": "invalid/system-object.json",
+      "category": "schema",
+      "detail": "system"
+    },
+    {
+      "fixture": "invalid/missing-system.json",
+      "category": "schema",
+      "detail": "system"
+    },
+    {
+      "fixture": "invalid/environment-number.json",
+      "category": "schema",
+      "detail": "environment"
+    },
+    {
+      "fixture": "invalid/environment-boolean.json",
+      "category": "schema",
+      "detail": "environment"
+    },
+    {
+      "fixture": "invalid/environment-array.json",
+      "category": "schema",
+      "detail": "environment"
+    },
+    {
+      "fixture": "invalid/environment-object.json",
+      "category": "schema",
+      "detail": "environment"
+    },
+    {
+      "fixture": "invalid/missing-environment.json",
+      "category": "schema",
+      "detail": "environment"
+    },
+    {
+      "fixture": "invalid/permission-number.json",
+      "category": "schema",
+      "detail": "permission"
+    },
+    {
+      "fixture": "invalid/permission-boolean.json",
+      "category": "schema",
+      "detail": "permission"
+    },
+    {
+      "fixture": "invalid/permission-array.json",
+      "category": "schema",
+      "detail": "permission"
+    },
+    {
+      "fixture": "invalid/permission-object.json",
+      "category": "schema",
+      "detail": "permission"
+    },
+    {
+      "fixture": "invalid/missing-permission.json",
+      "category": "schema",
+      "detail": "permission"
+    },
+    {
+      "fixture": "invalid/start_date-number.json",
+      "category": "schema",
+      "detail": "start_date"
+    },
+    {
+      "fixture": "invalid/start_date-boolean.json",
+      "category": "schema",
+      "detail": "start_date"
+    },
+    {
+      "fixture": "invalid/start_date-array.json",
+      "category": "schema",
+      "detail": "start_date"
+    },
+    {
+      "fixture": "invalid/start_date-object.json",
+      "category": "schema",
+      "detail": "start_date"
+    },
+    {
+      "fixture": "invalid/missing-start_date.json",
+      "category": "schema",
+      "detail": "start_date"
+    },
+    {
+      "fixture": "invalid/end_date-number.json",
+      "category": "schema",
+      "detail": "end_date"
+    },
+    {
+      "fixture": "invalid/end_date-boolean.json",
+      "category": "schema",
+      "detail": "end_date"
+    },
+    {
+      "fixture": "invalid/end_date-array.json",
+      "category": "schema",
+      "detail": "end_date"
+    },
+    {
+      "fixture": "invalid/end_date-object.json",
+      "category": "schema",
+      "detail": "end_date"
+    },
+    {
+      "fixture": "invalid/missing-end_date.json",
+      "category": "schema",
+      "detail": "end_date"
+    },
+    {
+      "fixture": "invalid/manager-number.json",
+      "category": "schema",
+      "detail": "manager"
+    },
+    {
+      "fixture": "invalid/manager-boolean.json",
+      "category": "schema",
+      "detail": "manager"
+    },
+    {
+      "fixture": "invalid/manager-array.json",
+      "category": "schema",
+      "detail": "manager"
+    },
+    {
+      "fixture": "invalid/manager-object.json",
+      "category": "schema",
+      "detail": "manager"
+    },
+    {
+      "fixture": "invalid/missing-manager.json",
+      "category": "schema",
+      "detail": "manager"
+    },
+    {
+      "fixture": "invalid/business_purpose-number.json",
+      "category": "schema",
+      "detail": "business_purpose"
+    },
+    {
+      "fixture": "invalid/business_purpose-boolean.json",
+      "category": "schema",
+      "detail": "business_purpose"
+    },
+    {
+      "fixture": "invalid/business_purpose-array.json",
+      "category": "schema",
+      "detail": "business_purpose"
+    },
+    {
+      "fixture": "invalid/business_purpose-object.json",
+      "category": "schema",
+      "detail": "business_purpose"
+    },
+    {
+      "fixture": "invalid/missing-business_purpose.json",
+      "category": "schema",
+      "detail": "business_purpose"
+    },
+    {
+      "fixture": "invalid/request_id-number.json",
+      "category": "schema",
+      "detail": "request_id"
+    },
+    {
+      "fixture": "invalid/request_id-boolean.json",
+      "category": "schema",
+      "detail": "request_id"
+    },
+    {
+      "fixture": "invalid/request_id-array.json",
+      "category": "schema",
+      "detail": "request_id"
+    },
+    {
+      "fixture": "invalid/request_id-object.json",
+      "category": "schema",
+      "detail": "request_id"
+    },
+    {
+      "fixture": "invalid/missing-request_id.json",
+      "category": "schema",
+      "detail": "request_id"
+    },
+    {
+      "fixture": "invalid/request_date-number.json",
+      "category": "schema",
+      "detail": "request_date"
+    },
+    {
+      "fixture": "invalid/request_date-boolean.json",
+      "category": "schema",
+      "detail": "request_date"
+    },
+    {
+      "fixture": "invalid/request_date-array.json",
+      "category": "schema",
+      "detail": "request_date"
+    },
+    {
+      "fixture": "invalid/request_date-object.json",
+      "category": "schema",
+      "detail": "request_date"
+    },
+    {
+      "fixture": "invalid/missing-request_date.json",
+      "category": "schema",
+      "detail": "request_date"
+    },
+    {
+      "fixture": "invalid/kind-unknown.json",
+      "category": "schema",
+      "detail": "kind"
+    },
+    {
+      "fixture": "invalid/kind-empty.json",
+      "category": "schema",
+      "detail": "kind"
+    },
+    {
+      "fixture": "invalid/kind-uppercase.json",
+      "category": "schema",
+      "detail": "kind"
+    },
+    {
+      "fixture": "invalid/environment-unknown.json",
+      "category": "schema",
+      "detail": "environment"
+    },
+    {
+      "fixture": "invalid/environment-empty.json",
+      "category": "schema",
+      "detail": "environment"
+    },
+    {
+      "fixture": "invalid/environment-uppercase.json",
+      "category": "schema",
+      "detail": "environment"
+    },
+    {
+      "fixture": "invalid/permission-unknown.json",
+      "category": "schema",
+      "detail": "permission"
+    },
+    {
+      "fixture": "invalid/permission-empty.json",
+      "category": "schema",
+      "detail": "permission"
+    },
+    {
+      "fixture": "invalid/permission-uppercase.json",
+      "category": "schema",
+      "detail": "permission"
+    },
+    {
+      "fixture": "invalid/supporting_quotes-null.json",
+      "category": "schema",
+      "detail": "supporting_quotes"
+    },
+    {
+      "fixture": "invalid/supporting_quotes-string.json",
+      "category": "schema",
+      "detail": "supporting_quotes"
+    },
+    {
+      "fixture": "invalid/supporting_quotes-object.json",
+      "category": "schema",
+      "detail": "supporting_quotes"
+    },
+    {
+      "fixture": "invalid/supporting_quotes-number.json",
+      "category": "schema",
+      "detail": "supporting_quotes"
+    },
+    {
+      "fixture": "invalid/supporting_quotes-boolean.json",
+      "category": "schema",
+      "detail": "supporting_quotes"
+    },
+    {
+      "fixture": "invalid/supporting_quotes-number-item.json",
+      "category": "schema",
+      "detail": "supporting_quotes"
+    },
+    {
+      "fixture": "invalid/supporting_quotes-null-item.json",
+      "category": "schema",
+      "detail": "supporting_quotes"
+    },
+    {
+      "fixture": "invalid/supporting_quotes-object-item.json",
+      "category": "schema",
+      "detail": "supporting_quotes"
+    },
+    {
+      "fixture": "invalid/supporting_quotes-array-item.json",
+      "category": "schema",
+      "detail": "supporting_quotes"
+    },
+    {
+      "fixture": "invalid/supporting_quotes-boolean-item.json",
+      "category": "schema",
+      "detail": "supporting_quotes"
+    },
+    {
+      "fixture": "invalid/missing-supporting_quotes.json",
+      "category": "schema",
+      "detail": "supporting_quotes"
+    },
+    {
+      "fixture": "invalid/issues-null.json",
+      "category": "schema",
+      "detail": "issues"
+    },
+    {
+      "fixture": "invalid/issues-string.json",
+      "category": "schema",
+      "detail": "issues"
+    },
+    {
+      "fixture": "invalid/issues-object.json",
+      "category": "schema",
+      "detail": "issues"
+    },
+    {
+      "fixture": "invalid/issues-number.json",
+      "category": "schema",
+      "detail": "issues"
+    },
+    {
+      "fixture": "invalid/issues-boolean.json",
+      "category": "schema",
+      "detail": "issues"
+    },
+    {
+      "fixture": "invalid/issues-number-item.json",
+      "category": "schema",
+      "detail": "issues"
+    },
+    {
+      "fixture": "invalid/issues-null-item.json",
+      "category": "schema",
+      "detail": "issues"
+    },
+    {
+      "fixture": "invalid/issues-object-item.json",
+      "category": "schema",
+      "detail": "issues"
+    },
+    {
+      "fixture": "invalid/issues-array-item.json",
+      "category": "schema",
+      "detail": "issues"
+    },
+    {
+      "fixture": "invalid/issues-boolean-item.json",
+      "category": "schema",
+      "detail": "issues"
+    },
+    {
+      "fixture": "invalid/missing-issues.json",
+      "category": "schema",
+      "detail": "issues"
+    },
+    {
+      "fixture": "invalid/extra-property.json",
+      "category": "schema",
+      "detail": ""
+    },
+    {
+      "fixture": "invalid/malformed-content.json",
+      "category": "malformed-json",
+      "detail": ""
+    },
+    {
+      "fixture": "invalid/fabricated-quote.json",
+      "category": "invalid-quotes",
+      "detail": ""
+    },
+    {
+      "fixture": "invalid/missing-completion-marker.json",
+      "category": "incomplete-response",
+      "detail": ""
+    },
+    {
+      "fixture": "invalid/length.json",
+      "category": "incomplete-response",
+      "detail": ""
+    },
+    {
+      "fixture": "invalid/tool-calls.json",
+      "category": "incomplete-response",
+      "detail": ""
+    },
+    {
+      "fixture": "invalid/content-filter.json",
+      "category": "incomplete-response",
+      "detail": ""
+    },
+    {
+      "fixture": "invalid/no-choices.json",
+      "category": "invalid-envelope",
+      "detail": ""
+    },
+    {
+      "fixture": "invalid/empty-choices.json",
+      "category": "invalid-envelope",
+      "detail": ""
+    },
+    {
+      "fixture": "invalid/choices-not-array.json",
+      "category": "invalid-envelope",
+      "detail": ""
+    },
+    {
+      "fixture": "invalid/choice-not-object.json",
+      "category": "invalid-envelope",
+      "detail": ""
+    },
+    {
+      "fixture": "invalid/missing-message.json",
+      "category": "invalid-envelope",
+      "detail": ""
+    },
+    {
+      "fixture": "invalid/message-not-object.json",
+      "category": "invalid-envelope",
+      "detail": ""
+    },
+    {
+      "fixture": "invalid/content-not-string.json",
+      "category": "invalid-envelope",
+      "detail": ""
+    }
+  ],
+  "valid": [
+    {
+      "fixture": "valid/kind-0.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "Analytics",
+        "kind": "new",
+        "system": "Atlas",
+        "environment": "staging",
+        "permission": "read",
+        "start_date": "2026-10-23",
+        "end_date": "2026-11-06",
+        "manager": "Priya Shah",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "IT-001",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/kind-1.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "Analytics",
+        "kind": "change",
+        "system": "Atlas",
+        "environment": "staging",
+        "permission": "read",
+        "start_date": "2026-10-23",
+        "end_date": "2026-11-06",
+        "manager": "Priya Shah",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "IT-001",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/kind-2.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "Analytics",
+        "kind": "withdrawal",
+        "system": "Atlas",
+        "environment": "staging",
+        "permission": "read",
+        "start_date": "2026-10-23",
+        "end_date": "2026-11-06",
+        "manager": "Priya Shah",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "IT-001",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/kind-3.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "Analytics",
+        "kind": "other",
+        "system": "Atlas",
+        "environment": "staging",
+        "permission": "read",
+        "start_date": "2026-10-23",
+        "end_date": "2026-11-06",
+        "manager": "Priya Shah",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "IT-001",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/kind-4.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "Analytics",
+        "kind": null,
+        "system": "Atlas",
+        "environment": "staging",
+        "permission": "read",
+        "start_date": "2026-10-23",
+        "end_date": "2026-11-06",
+        "manager": "Priya Shah",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "IT-001",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/environment-0.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "Analytics",
+        "kind": "new",
+        "system": "Atlas",
+        "environment": "staging",
+        "permission": "read",
+        "start_date": "2026-10-23",
+        "end_date": "2026-11-06",
+        "manager": "Priya Shah",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "IT-001",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/environment-1.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "Analytics",
+        "kind": "new",
+        "system": "Atlas",
+        "environment": "production",
+        "permission": "read",
+        "start_date": "2026-10-23",
+        "end_date": "2026-11-06",
+        "manager": "Priya Shah",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "IT-001",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/environment-2.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "Analytics",
+        "kind": "new",
+        "system": "Atlas",
+        "environment": null,
+        "permission": "read",
+        "start_date": "2026-10-23",
+        "end_date": "2026-11-06",
+        "manager": "Priya Shah",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "IT-001",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/permission-0.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "Analytics",
+        "kind": "new",
+        "system": "Atlas",
+        "environment": "staging",
+        "permission": "read",
+        "start_date": "2026-10-23",
+        "end_date": "2026-11-06",
+        "manager": "Priya Shah",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "IT-001",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/permission-1.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "Analytics",
+        "kind": "new",
+        "system": "Atlas",
+        "environment": "staging",
+        "permission": "write",
+        "start_date": "2026-10-23",
+        "end_date": "2026-11-06",
+        "manager": "Priya Shah",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "IT-001",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/permission-2.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "Analytics",
+        "kind": "new",
+        "system": "Atlas",
+        "environment": "staging",
+        "permission": "admin",
+        "start_date": "2026-10-23",
+        "end_date": "2026-11-06",
+        "manager": "Priya Shah",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "IT-001",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/permission-3.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "Analytics",
+        "kind": "new",
+        "system": "Atlas",
+        "environment": "staging",
+        "permission": null,
+        "start_date": "2026-10-23",
+        "end_date": "2026-11-06",
+        "manager": "Priya Shah",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "IT-001",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/supporting_quotes-empty.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "Analytics",
+        "kind": "new",
+        "system": "Atlas",
+        "environment": "staging",
+        "permission": "read",
+        "start_date": "2026-10-23",
+        "end_date": "2026-11-06",
+        "manager": "Priya Shah",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "IT-001",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/supporting_quotes-strings.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "Analytics",
+        "kind": "new",
+        "system": "Atlas",
+        "environment": "staging",
+        "permission": "read",
+        "start_date": "2026-10-23",
+        "end_date": "2026-11-06",
+        "manager": "Priya Shah",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "IT-001",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/issues-empty.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "Analytics",
+        "kind": "new",
+        "system": "Atlas",
+        "environment": "staging",
+        "permission": "read",
+        "start_date": "2026-10-23",
+        "end_date": "2026-11-06",
+        "manager": "Priya Shah",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "IT-001",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/issues-strings.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "Analytics",
+        "kind": "new",
+        "system": "Atlas",
+        "environment": "staging",
+        "permission": "read",
+        "start_date": "2026-10-23",
+        "end_date": "2026-11-06",
+        "manager": "Priya Shah",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "IT-001",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": [
+          "Example issue"
+        ]
+      }
+    },
+    {
+      "fixture": "valid/requester-null.json",
+      "expected": {
+        "requester": null,
+        "team": "Analytics",
+        "kind": "new",
+        "system": "Atlas",
+        "environment": "staging",
+        "permission": "read",
+        "start_date": "2026-10-23",
+        "end_date": "2026-11-06",
+        "manager": "Priya Shah",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "IT-001",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/requester-string.json",
+      "expected": {
+        "requester": "schema-shape-example",
+        "team": "Analytics",
+        "kind": "new",
+        "system": "Atlas",
+        "environment": "staging",
+        "permission": "read",
+        "start_date": "2026-10-23",
+        "end_date": "2026-11-06",
+        "manager": "Priya Shah",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "IT-001",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/team-null.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": null,
+        "kind": "new",
+        "system": "Atlas",
+        "environment": "staging",
+        "permission": "read",
+        "start_date": "2026-10-23",
+        "end_date": "2026-11-06",
+        "manager": "Priya Shah",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "IT-001",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/team-string.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "schema-shape-example",
+        "kind": "new",
+        "system": "Atlas",
+        "environment": "staging",
+        "permission": "read",
+        "start_date": "2026-10-23",
+        "end_date": "2026-11-06",
+        "manager": "Priya Shah",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "IT-001",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/system-null.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "Analytics",
+        "kind": "new",
+        "system": null,
+        "environment": "staging",
+        "permission": "read",
+        "start_date": "2026-10-23",
+        "end_date": "2026-11-06",
+        "manager": "Priya Shah",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "IT-001",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/system-string.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "Analytics",
+        "kind": "new",
+        "system": "schema-shape-example",
+        "environment": "staging",
+        "permission": "read",
+        "start_date": "2026-10-23",
+        "end_date": "2026-11-06",
+        "manager": "Priya Shah",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "IT-001",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/start_date-null.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "Analytics",
+        "kind": "new",
+        "system": "Atlas",
+        "environment": "staging",
+        "permission": "read",
+        "start_date": null,
+        "end_date": "2026-11-06",
+        "manager": "Priya Shah",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "IT-001",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/start_date-string.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "Analytics",
+        "kind": "new",
+        "system": "Atlas",
+        "environment": "staging",
+        "permission": "read",
+        "start_date": "schema-shape-example",
+        "end_date": "2026-11-06",
+        "manager": "Priya Shah",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "IT-001",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/end_date-null.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "Analytics",
+        "kind": "new",
+        "system": "Atlas",
+        "environment": "staging",
+        "permission": "read",
+        "start_date": "2026-10-23",
+        "end_date": null,
+        "manager": "Priya Shah",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "IT-001",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/end_date-string.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "Analytics",
+        "kind": "new",
+        "system": "Atlas",
+        "environment": "staging",
+        "permission": "read",
+        "start_date": "2026-10-23",
+        "end_date": "schema-shape-example",
+        "manager": "Priya Shah",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "IT-001",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/manager-null.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "Analytics",
+        "kind": "new",
+        "system": "Atlas",
+        "environment": "staging",
+        "permission": "read",
+        "start_date": "2026-10-23",
+        "end_date": "2026-11-06",
+        "manager": null,
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "IT-001",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/manager-string.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "Analytics",
+        "kind": "new",
+        "system": "Atlas",
+        "environment": "staging",
+        "permission": "read",
+        "start_date": "2026-10-23",
+        "end_date": "2026-11-06",
+        "manager": "schema-shape-example",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "IT-001",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/business_purpose-null.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "Analytics",
+        "kind": "new",
+        "system": "Atlas",
+        "environment": "staging",
+        "permission": "read",
+        "start_date": "2026-10-23",
+        "end_date": "2026-11-06",
+        "manager": "Priya Shah",
+        "business_purpose": null,
+        "request_id": "IT-001",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/business_purpose-string.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "Analytics",
+        "kind": "new",
+        "system": "Atlas",
+        "environment": "staging",
+        "permission": "read",
+        "start_date": "2026-10-23",
+        "end_date": "2026-11-06",
+        "manager": "Priya Shah",
+        "business_purpose": "schema-shape-example",
+        "request_id": "IT-001",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/request_id-null.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "Analytics",
+        "kind": "new",
+        "system": "Atlas",
+        "environment": "staging",
+        "permission": "read",
+        "start_date": "2026-10-23",
+        "end_date": "2026-11-06",
+        "manager": "Priya Shah",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": null,
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/request_id-string.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "Analytics",
+        "kind": "new",
+        "system": "Atlas",
+        "environment": "staging",
+        "permission": "read",
+        "start_date": "2026-10-23",
+        "end_date": "2026-11-06",
+        "manager": "Priya Shah",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "schema-shape-example",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/request_date-null.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "Analytics",
+        "kind": "new",
+        "system": "Atlas",
+        "environment": "staging",
+        "permission": "read",
+        "start_date": "2026-10-23",
+        "end_date": "2026-11-06",
+        "manager": "Priya Shah",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "IT-001",
+        "request_date": null,
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/request_date-string.json",
+      "expected": {
+        "requester": "Maya Chen",
+        "team": "Analytics",
+        "kind": "new",
+        "system": "Atlas",
+        "environment": "staging",
+        "permission": "read",
+        "start_date": "2026-10-23",
+        "end_date": "2026-11-06",
+        "manager": "Priya Shah",
+        "business_purpose": "I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).",
+        "request_id": "IT-001",
+        "request_date": "schema-shape-example",
+        "supporting_quotes": [
+          "Maya Chen from Analytics here, with request IT-001 dated 2026-10-22. Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06? My manager is Priya Shah. I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle). The sample records are already loaded, and I need to check the totals against our spreadsheet. Once I'm done with checking, I'll be sending out any discrepancies to the dashboard owner."
+        ],
+        "issues": []
+      }
+    },
+    {
+      "fixture": "valid/minimal-withdrawal.json",
+      "expected": {
+        "requester": null,
+        "team": null,
+        "kind": "withdrawal",
+        "system": null,
+        "environment": null,
+        "permission": null,
+        "start_date": null,
+        "end_date": null,
+        "manager": null,
+        "business_purpose": null,
+        "request_id": "IT-W01",
+        "request_date": "2026-10-22",
+        "supporting_quotes": [
+          "Please withdraw IT-W01. Request date 2026-10-22."
+        ],
+        "issues": [
+          "requester: absent from source",
+          "team: absent from source",
+          "system: absent from source",
+          "environment: absent from source",
+          "permission: absent from source",
+          "start_date: absent from source",
+          "end_date: absent from source",
+          "manager: absent from source",
+          "business_purpose: absent from source"
+        ]
+      },
+      "message": "Please withdraw IT-W01. Request date 2026-10-22."
+    }
+  ]
+}

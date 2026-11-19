@@ -1,0 +1,29 @@
+{
+  "observation": "Authored comparator fault injection; these are not accepted intake results or live observations.",
+  "responses": {
+    "IT-001.json": {
+      "choices": [
+        {
+          "index": 0,
+          "finish_reason": "stop",
+          "message": {
+            "role": "assistant",
+            "content": "{\"request_id\": \"IT-001\", \"kind\": \"new\", \"requester\": \"Maya Chen\", \"team\": \"Analytics\", \"system\": \"Atlas\", \"environment\": \"staging\", \"permission\": \"write\", \"business_purpose\": \"I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).\", \"start_date\": \"2026-10-23\", \"end_date\": \"2026-11-06\", \"manager\": \"Priya Shah\", \"supporting_quotes\": [\"Maya Chen from Analytics here, with request IT-001 dated 2026-10-22.\", \"Can I get new read access on Atlas in staging from 2026-10-23 to 2026-11-06?\", \"My manager is Priya Shah.\", \"I'm checking the weekly conversion dashboard with the new event definition changes (before next reporting cycle).\"], \"issues\": []}"
+          }
+        }
+      ]
+    },
+    "IT-020.json": {
+      "choices": [
+        {
+          "index": 0,
+          "finish_reason": "stop",
+          "message": {
+            "role": "assistant",
+            "content": "{\"requester\": \"Ethan Clark\", \"team\": \"Product\", \"kind\": \"new\", \"system\": \"Atlas\", \"environment\": \"staging\", \"permission\": \"read\", \"start_date\": \"2026-10-29\", \"end_date\": \"2026-11-02\", \"manager\": \"Priya Shah\", \"business_purpose\": \"I want to look at some sample usage records before I draft the summary on feature adoption.\", \"request_id\": \"IT-020\", \"request_date\": \"2026-10-22\", \"supporting_quotes\": [\"My manager is Priya Shah.\"], \"issues\": []}"
+          }
+        }
+      ]
+    }
+  }
+}

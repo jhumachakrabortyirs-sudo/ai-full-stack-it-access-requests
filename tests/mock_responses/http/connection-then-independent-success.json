@@ -1,0 +1,21 @@
+{
+  "steps": [
+    {
+      "exception": "connection",
+      "message": "Fixture connection failure fixture-secret-do-not-log"
+    },
+    {
+      "exception": "connection",
+      "message": "Fixture connection failure fixture-secret-do-not-log"
+    },
+    {
+      "exception": "connection",
+      "message": "Fixture connection failure fixture-secret-do-not-log"
+    },
+    {
+      "status": 200,
+      "headers": {},
+      "body_fixture": "complete-002.json"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "checked_at_utc": "2026-11-13T19:23:32.438807+00:00",
+  "command": "env -u API_KEY .venv/bin/python tools/validate_submission.py",
+  "scope": "Saved artifacts, local git evidence and offline tests; no live model or external submission verification",
+  "base_commit": "0fb1da0c1d0e90f13fc3e748f21272f3c79be444",
+  "local_origin_main_ref": "0fb1da0c1d0e90f13fc3e748f21272f3c79be444",
+  "remote_ref_note": "Local tracking ref only; no network verification or push performed",
+  "generation": "9e6eaf254fb64a80a833d1df9bcb90fd",
+  "current_records": 20,
+  "current_statuses": {
+    "review": 11,
+    "needs-information": 9
+  },
+  "current_scalar": {
+    "correct": 240,
+    "denominator": 240
+  },
+  "current_schema_quotes_issues_routes": "20/20 each; original byte hashes and all queue fields agree",
+  "saved_accuracy_scalar": {
+    "correct": 252,
+    "denominator": 252
+  },
+  "saved_accuracy_kind": "mock-fixture-agreement",
+  "request_evidence": "Matches configured request builder; no credential read or provider call",
+  "full_suite": {
+    "passed": 89,
+    "log_sha256": "26773dcb98b2629ca3f978334ec5bb0398041960056a066136e158f70931a2fc"
+  },
+  "test_first_implementation_pairs": 8,
+  "validation": {
+    "met": 86,
+    "not met": 3
+  },
+  "external_requirements_not_verified": [
+    "R-78",
+    "R-79",
+    "R-80"
+  ]
+}

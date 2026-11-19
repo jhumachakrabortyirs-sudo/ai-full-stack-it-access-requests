@@ -1,0 +1,12 @@
+{
+  "choices": [
+    {
+      "index": 0,
+      "finish_reason": "length",
+      "message": {
+        "role": "assistant",
+        "content": "{\"request_id\": \"IT-001\","
+      }
+    }
+  ]
+}

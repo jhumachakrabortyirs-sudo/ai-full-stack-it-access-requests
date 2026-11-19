@@ -1,0 +1,48 @@
+{
+  "source": "planning/plan.md T37\u2013T40; materials/office-policy.md rules 2 and 5 and processing/recovery",
+  "workload_sizes": [
+    200,
+    400,
+    2000
+  ],
+  "workload": {
+    "id_format": "LOAD-{index:04}",
+    "message_template": "Please withdraw {{request_id}}. Request date 2026-10-22.",
+    "scalars": {
+      "request_id": "{{request_id}}",
+      "request_date": "2026-10-22",
+      "kind": "withdrawal",
+      "requester": null,
+      "team": null,
+      "system": null,
+      "environment": null,
+      "permission": null,
+      "business_purpose": null,
+      "start_date": null,
+      "end_date": null,
+      "manager": null
+    },
+    "route": [
+      "review",
+      "IT Service Desk",
+      "confirm-withdrawal"
+    ]
+  },
+  "ordinary_routes": {
+    "IT-001.json": [
+      "review",
+      "System Owner",
+      "review-request"
+    ],
+    "IT-002.json": [
+      "review",
+      "Security Review",
+      "review-risk-then-owner"
+    ],
+    "IT-003.json": [
+      "needs-information",
+      "IT Service Desk",
+      "clarify"
+    ]
+  }
+}

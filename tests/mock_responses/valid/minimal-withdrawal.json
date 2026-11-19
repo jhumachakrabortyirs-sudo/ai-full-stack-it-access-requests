@@ -1,0 +1,12 @@
+{
+  "choices": [
+    {
+      "index": 0,
+      "finish_reason": "stop",
+      "message": {
+        "role": "assistant",
+        "content": "{\"requester\": null, \"team\": null, \"kind\": \"withdrawal\", \"system\": null, \"environment\": null, \"permission\": null, \"start_date\": null, \"end_date\": null, \"manager\": null, \"business_purpose\": null, \"request_id\": \"IT-W01\", \"request_date\": \"2026-10-22\", \"supporting_quotes\": [\"Please withdraw IT-W01. Request date 2026-10-22.\"], \"issues\": [\"requester: absent from source\", \"team: absent from source\", \"system: absent from source\", \"environment: absent from source\", \"permission: absent from source\", \"start_date: absent from source\", \"end_date: absent from source\", \"manager: absent from source\", \"business_purpose: absent from source\"]}"
+      }
+    }
+  ]
+}
