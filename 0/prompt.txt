@@ -1,0 +1,1 @@
+revert the repository back to Create JhumaResult.md commit  point
